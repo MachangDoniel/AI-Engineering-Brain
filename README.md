@@ -1,16 +1,18 @@
 # 🧠 The AI Engineering Brain
 
-**An open study library on Knowledge Graphs, GraphRAG, and AI Coding Assistants**
+**Building Knowledge Graphs for Next-Generation Software Engineering**
+
+*A practical guide to Graphify, Graphiti, GraphRAG, Neo4j, Qdrant, Tree-sitter, MCP, and AI coding agents — 2026 Edition*
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-contributing)
 [![Made for Developers](https://img.shields.io/badge/Made_for-Developers-blue.svg)](#)
 
-Modern AI coding assistants are powerful, but they mostly see your code as *text*. This library explains how to give them **architecture awareness, dependency awareness, and long-term memory** by combining knowledge graphs, vector search, and the Model Context Protocol (MCP) — so tools like [Claude Code](https://claude.com/claude-code), [Codex](https://openai.com/codex/), and [Cursor](https://cursor.com) can answer questions like:
+Modern AI coding assistants are powerful, but they mostly see your code as *text*. This open study library explains how to give them **architecture awareness, dependency awareness, and long-term memory** by combining knowledge graphs, vector search, and the Model Context Protocol — so tools like [Claude Code](https://claude.com/claude-code), [Codex](https://openai.com/codex/), and [Cursor](https://cursor.com) can answer questions like:
 
-- *Which Flutter screens call this API?*
-- *Which service writes to the `users` table?*
+- *Which Flutter screens eventually write to the `users` table?*
 - *What breaks if this service is removed?*
+- *Which architectural decision introduced this dependency?*
 
 <p align="center">
   <img src="assets/architecture.svg" alt="The AI Engineering Brain reference architecture" width="720">
@@ -20,19 +22,35 @@ Modern AI coding assistants are powerful, but they mostly see your code as *text
 
 ## 📚 Table of Contents
 
+### Part I — Foundations
+
 | # | Chapter | What you'll learn |
 |---|---------|-------------------|
-| 1 | [Why AI Assistants Need More Than a Context Window](chapters/01-why-ai-assistants-need-more.md) | The limits of today's tools and the problem this library solves |
-| 2 | [RAG vs Knowledge Graphs vs GraphRAG](chapters/02-rag-knowledge-graphs-graphrag.md) | The three retrieval paradigms and when to use each |
-| 3 | [The Reference Architecture](chapters/03-system-architecture.md) | The full pipeline: parsing → graph → vectors → MCP → agent |
-| 4 | [Graph Builders: Graphify & Graphiti](chapters/04-graph-builders-graphify-graphiti.md) | How repositories become graphs, and how graphs remember time |
-| 5 | [The Storage Layer: Neo4j & Qdrant](chapters/05-storage-neo4j-qdrant.md) | Graph schema design and vector indexing strategy |
-| 6 | [Parsing & Integration: Tree-sitter & MCP](chapters/06-parsing-and-mcp.md) | Turning code into ASTs, and connecting agents to tools |
-| 7 | [AI Coding Agents](chapters/07-ai-coding-agents.md) | Claude Code, Codex, Cursor, Gemini CLI, Continue — with graph superpowers |
-| 8 | [Costs, Deployment & the Road Ahead](chapters/08-costs-deployment-future.md) | Self-hosted vs SaaS, budgets, startup ideas, 2027–2030 outlook |
-| A | [Appendix: Tool Directory](appendix/tool-directory.md) | Reference catalog of 10+ tools with links and use cases |
+| 1 | [Executive Summary](chapters/01-executive-summary.md) | The vision: what an AI Engineering Brain is and why it matters |
+| 2 | [The Evolution of AI Software Engineering](chapters/02-evolution-of-ai-software-engineering.md) | Nine eras: from static docs to persistent engineering memory |
+| 3 | [From Prompt Engineering to the AI Engineering Brain](chapters/03-prompt-to-knowledge-engineering.md) | Prompt → context → knowledge engineering as accumulating layers |
+| 4 | [Why RAG Isn't Enough](chapters/04-why-rag-isnt-enough.md) | Chunking, the similarity trap, multi-hop reasoning — where vectors fail |
+| 5 | [Knowledge Graphs](chapters/05-knowledge-graphs.md) | Entities, relationships, property graphs — the right data model for software |
+| 6 | [GraphRAG](chapters/06-graphrag.md) | Building a production graph retrieval system: traversal, ranking, metrics |
 
-> **New here?** Start with [Chapter 1](chapters/01-why-ai-assistants-need-more.md) and follow the *Next* links at the bottom of each chapter.
+### Part II — Technologies
+
+| # | Chapter | What you'll learn |
+|---|---------|-------------------|
+| 7 | [Graphify](chapters/07-graphify.md) | Converting repositories into knowledge graphs: pipeline, internals, limits |
+| 8 | [Graphiti](chapters/08-graphiti.md) | Persistent, temporal memory for AI systems — knowledge vs memory |
+| 9 | [Tree-sitter](chapters/09-tree-sitter.md) | Language-aware parsing: the local, deterministic foundation |
+| 10 | [Neo4j & Qdrant](chapters/10-neo4j-and-qdrant.md) | The storage layer: graph schema design and vector indexing |
+
+### Part III — Integration & Production
+
+| # | Chapter | What you'll learn |
+|---|---------|-------------------|
+| 11 | [MCP & AI Coding Agents](chapters/11-mcp-and-ai-agents.md) | Connecting the brain to Claude Code, Codex, Cursor, Gemini CLI, and more |
+| 12 | [Costs, Deployment & the Road Ahead](chapters/12-costs-deployment-future.md) | Budgets, self-hosted vs SaaS, startup ideas, the 2027–2030 outlook |
+| A | [Appendix: Tool Directory](appendix/tool-directory.md) | Reference catalog of 10+ tools with verified links and use cases |
+
+> **New here?** Start with [Chapter 1](chapters/01-executive-summary.md) and follow the *Next* links at the bottom of each chapter.
 
 ---
 
@@ -48,7 +66,7 @@ Modern AI coding assistants are powerful, but they mostly see your code as *text
 | Agent ↔ tool bridge | Model Context Protocol | [modelcontextprotocol.io](https://modelcontextprotocol.io) |
 | Coding agent | Claude Code | [claude.com/claude-code](https://claude.com/claude-code) |
 
-**Minimum setup:** Graphify + a coding agent. **Advanced:** add Neo4j, Qdrant, Graphiti, and MCP. Details in [Chapter 8](chapters/08-costs-deployment-future.md).
+**Minimum setup:** Graphify + a coding agent. **Advanced:** add Neo4j, Qdrant, Graphiti, and MCP. Details in [Chapter 12](chapters/12-costs-deployment-future.md).
 
 ---
 

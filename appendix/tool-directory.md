@@ -1,6 +1,6 @@
 # Appendix A — Tool Directory
 
-> [◀ Chapter 8](../chapters/08-costs-deployment-future.md) · [🏠 Home](../README.md)
+> [◀ Chapter 12](../chapters/12-costs-deployment-future.md) · [🏠 Home](../README.md)
 
 A reference catalog of the tools that make up the engineering-intelligence ecosystem. Each entry links to the official project.
 
@@ -13,7 +13,7 @@ A reference catalog of the tools that make up the engineering-intelligence ecosy
 Converts any folder — code, SQL schemas, shell scripts, docs, papers, images, videos — into a queryable knowledge graph for AI coding assistants (Claude Code, Codex, OpenCode, Cursor, Gemini CLI). Built on Tree-sitter, NetworkX, and Leiden clustering; code parsing is fully local.
 
 **Best for:** architecture exploration, impact analysis, dependency discovery, AI engineering assistants.
-**Deep dive:** [Chapter 4](../chapters/04-graph-builders-graphify-graphiti.md)
+**Deep dive:** [Chapter 7](../chapters/07-graphify.md)
 
 ## 2. Graphiti
 
@@ -22,7 +22,7 @@ Converts any folder — code, SQL schemas, shell scripts, docs, papers, images, 
 Temporal knowledge graph framework built for AI memory. Stores facts and relationships with validity over time — *Service A used PostgreSQL in January, MongoDB in June* — so agents can reason about history, not just current state.
 
 **Best for:** agent memory, organizational knowledge, project history tracking.
-**Deep dive:** [Chapter 4](../chapters/04-graph-builders-graphify-graphiti.md)
+**Deep dive:** [Chapter 8](../chapters/08-graphiti.md)
 
 ## 3. Sourcegraph
 
@@ -39,7 +39,7 @@ The most mature code-intelligence platform: repository indexing, cross-repo sear
 The leading graph database — relationships are first-class, queryable citizens via the Cypher language. Provides GenAI tooling for knowledge graphs, RAG, and agent memory.
 
 **Best for:** dependency analysis, architecture visualization, impact analysis.
-**Deep dive:** [Chapter 5](../chapters/05-storage-neo4j-qdrant.md)
+**Deep dive:** [Chapter 10](../chapters/10-neo4j-and-qdrant.md)
 
 ## 5. LlamaIndex
 
@@ -56,7 +56,7 @@ Framework for building AI knowledge systems over many data sources: Git repos, P
 High-performance open-source vector database. Stores embeddings for semantic search — the "what is similar to this?" half of GraphRAG, complementing the graph's "what depends on this?"
 
 **Best for:** semantic code/doc search, the vector half of GraphRAG.
-**Deep dive:** [Chapter 5](../chapters/05-storage-neo4j-qdrant.md)
+**Deep dive:** [Chapter 10](../chapters/10-neo4j-and-qdrant.md)
 
 ## 7. DeepWiki
 
@@ -81,7 +81,7 @@ Transforms repositories into LLM-friendly text digests — the quickest way to f
 Open-source AI coding assistant platform (IDE extensions + CLI) supporting Claude, GPT, Gemini, and local models, with codebase indexing, custom prompts, and internal-doc retrieval.
 
 **Best for:** teams wanting full control over models and retrieval.
-**Deep dive:** [Chapter 7](../chapters/07-ai-coding-agents.md)
+**Deep dive:** [Chapter 11](../chapters/11-mcp-and-ai-agents.md)
 
 ## 10. LangGraph
 
@@ -114,4 +114,4 @@ For AI-powered software engineering specifically (rankings shift depending on wh
 
 ---
 
-> [◀ Chapter 8: Costs, Deployment & the Road Ahead](../chapters/08-costs-deployment-future.md) · [🏠 Home](../README.md)
+> [◀ Chapter 12: Costs, Deployment & the Road Ahead](../chapters/12-costs-deployment-future.md) · [🏠 Home](../README.md)
