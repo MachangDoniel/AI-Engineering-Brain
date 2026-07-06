@@ -54,6 +54,20 @@ Modern AI coding assistants are powerful, but they mostly see your code as *text
 
 ---
 
+## 🕸️ Project Knowledge Graph
+
+This library practices what it preaches: the whole book — chapters, tools, and concepts — is modeled as a knowledge graph (40 nodes, 67 relationships).
+
+<p align="center">
+  <img src="assets/knowledge-graph.svg" alt="Project knowledge graph: concepts, stack, and agents" width="720">
+</p>
+
+- **Explore interactively:** open [knowledge-graph/index.html](knowledge-graph/index.html) in a browser — drag nodes, hover for relationships, click to jump to a chapter or tool
+- **Load it into Neo4j:** [knowledge-graph/graph.cypher](knowledge-graph/graph.cypher) imports the graph into the book's own recommended stack (`cat graph.cypher | cypher-shell`)
+- **Raw data:** [knowledge-graph/graph.json](knowledge-graph/graph.json) · regenerate everything with [knowledge-graph/build.py](knowledge-graph/build.py)
+
+---
+
 ## 🚀 TL;DR — The Recommended 2026 Stack
 
 | Layer | Tool | Link |

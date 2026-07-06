@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The AI Engineering Brain — Knowledge Graph</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #0f172a; color: #e2e8f0;
+               font-family: "Segoe UI", Helvetica, Arial, sans-serif; }
+  #hud { position: fixed; top: 12px; left: 16px; z-index: 2; }
+  #hud h1 { font-size: 18px; margin: 0 0 4px; }
+  #hud p { font-size: 12px; color: #94a3b8; margin: 0; }
+  #legend { position: fixed; bottom: 12px; left: 16px; z-index: 2; font-size: 12px; }
+  .chip { display: inline-block; margin-right: 12px; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+         margin-right: 4px; vertical-align: -1px; }
+  #info { position: fixed; top: 12px; right: 16px; z-index: 2; background: #1e293bcc;
+          border: 1px solid #334155; border-radius: 8px; padding: 10px 14px;
+          font-size: 13px; max-width: 260px; display: none; }
+  #info a { color: #7dd3fc; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<div id="hud">
+  <h1>🧠 The AI Engineering Brain — Knowledge Graph</h1>
+  <p>Drag nodes · hover for relationships · click a node to open it</p>
+</div>
+<div id="legend">
+  <span class="chip"><span class="dot" style="background:#60a5fa"></span>Chapter</span>
+  <span class="chip"><span class="dot" style="background:#4ade80"></span>Tool</span>
+  <span class="chip"><span class="dot" style="background:#c084fc"></span>Concept</span>
+</div>
+<div id="info"></div>
+<canvas id="c"></canvas>
+<script>
+const DATA = {"nodes": [{"id": "c1", "label": "Ch 1 \u2014 Executive Summary", "type": "chapter", "url": "../chapters/01-executive-summary.md"}, {"id": "c2", "label": "Ch 2 \u2014 Evolution", "type": "chapter", "url": "../chapters/02-evolution-of-ai-software-engineering.md"}, {"id": "c3", "label": "Ch 3 \u2014 Prompt \u2192 Knowledge", "type": "chapter", "url": "../chapters/03-prompt-to-knowledge-engineering.md"}, {"id": "c4", "label": "Ch 4 \u2014 Why RAG Isn't Enough", "type": "chapter", "url": "../chapters/04-why-rag-isnt-enough.md"}, {"id": "c5", "label": "Ch 5 \u2014 Knowledge Graphs", "type": "chapter", "url": "../chapters/05-knowledge-graphs.md"}, {"id": "c6", "label": "Ch 6 \u2014 GraphRAG", "type": "chapter", "url": "../chapters/06-graphrag.md"}, {"id": "c7", "label": "Ch 7 \u2014 Graphify", "type": "chapter", "url": "../chapters/07-graphify.md"}, {"id": "c8", "label": "Ch 8 \u2014 Graphiti", "type": "chapter", "url": "../chapters/08-graphiti.md"}, {"id": "c9", "label": "Ch 9 \u2014 Tree-sitter", "type": "chapter", "url": "../chapters/09-tree-sitter.md"}, {"id": "c10", "label": "Ch 10 \u2014 Neo4j & Qdrant", "type": "chapter", "url": "../chapters/10-neo4j-and-qdrant.md"}, {"id": "c11", "label": "Ch 11 \u2014 MCP & Agents", "type": "chapter", "url": "../chapters/11-mcp-and-ai-agents.md"}, {"id": "c12", "label": "Ch 12 \u2014 Production", "type": "chapter", "url": "../chapters/12-costs-deployment-future.md"}, {"id": "cA", "label": "Appendix \u2014 Tool Directory", "type": "chapter", "url": "../appendix/tool-directory.md"}, {"id": "graphify", "label": "Graphify", "type": "tool", "url": "https://github.com/safishamsi/graphify"}, {"id": "graphiti", "label": "Graphiti", "type": "tool", "url": "https://github.com/getzep/graphiti"}, {"id": "neo4j", "label": "Neo4j", "type": "tool", "url": "https://neo4j.com"}, {"id": "qdrant", "label": "Qdrant", "type": "tool", "url": "https://qdrant.tech"}, {"id": "treesitter", "label": "Tree-sitter", "type": "tool", "url": "https://github.com/tree-sitter/tree-sitter"}, {"id": "mcp", "label": "MCP", "type": "tool", "url": "https://modelcontextprotocol.io"}, {"id": "claudecode", "label": "Claude Code", "type": "tool", "url": "https://claude.com/claude-code"}, {"id": "codex", "label": "Codex", "type": "tool", "url": "https://openai.com/codex/"}, {"id": "cursor", "label": "Cursor", "type": "tool", "url": "https://cursor.com"}, {"id": "geminicli", "label": "Gemini CLI", "type": "tool", "url": "https://github.com/google-gemini/gemini-cli"}, {"id": "continue", "label": "Continue", "type": "tool", "url": "https://continue.dev"}, {"id": "opencode", "label": "OpenCode", "type": "tool", "url": "https://github.com/sst/opencode"}, {"id": "sourcegraph", "label": "Sourcegraph", "type": "tool", "url": "https://sourcegraph.com"}, {"id": "llamaindex", "label": "LlamaIndex", "type": "tool", "url": "https://www.llamaindex.ai"}, {"id": "deepwiki", "label": "DeepWiki", "type": "tool", "url": "https://deepwiki.com"}, {"id": "gitingest", "label": "Gitingest", "type": "tool", "url": "https://gitingest.com"}, {"id": "langgraph", "label": "LangGraph", "type": "tool", "url": "https://github.com/langchain-ai/langgraph"}, {"id": "prompteng", "label": "Prompt Engineering", "type": "concept"}, {"id": "contexteng", "label": "Context Engineering", "type": "concept"}, {"id": "rag", "label": "RAG", "type": "concept"}, {"id": "kg", "label": "Knowledge Graph", "type": "concept"}, {"id": "graphrag", "label": "GraphRAG", "type": "concept"}, {"id": "specdriven", "label": "Spec-Driven Dev", "type": "concept"}, {"id": "memory", "label": "Agent Memory", "type": "concept"}, {"id": "ast", "label": "AST", "type": "concept"}, {"id": "embeddings", "label": "Embeddings", "type": "concept"}, {"id": "propgraph", "label": "Property Graph", "type": "concept"}], "edges": [{"source": "c1", "rel": "FOLLOWED_BY", "target": "c2"}, {"source": "c2", "rel": "FOLLOWED_BY", "target": "c3"}, {"source": "c3", "rel": "FOLLOWED_BY", "target": "c4"}, {"source": "c4", "rel": "FOLLOWED_BY", "target": "c5"}, {"source": "c5", "rel": "FOLLOWED_BY", "target": "c6"}, {"source": "c6", "rel": "FOLLOWED_BY", "target": "c7"}, {"source": "c7", "rel": "FOLLOWED_BY", "target": "c8"}, {"source": "c8", "rel": "FOLLOWED_BY", "target": "c9"}, {"source": "c9", "rel": "FOLLOWED_BY", "target": "c10"}, {"source": "c10", "rel": "FOLLOWED_BY", "target": "c11"}, {"source": "c11", "rel": "FOLLOWED_BY", "target": "c12"}, {"source": "c12", "rel": "FOLLOWED_BY", "target": "cA"}, {"source": "c1", "rel": "COVERS", "target": "kg"}, {"source": "c2", "rel": "COVERS", "target": "rag"}, {"source": "c2", "rel": "COVERS", "target": "graphrag"}, {"source": "c3", "rel": "COVERS", "target": "prompteng"}, {"source": "c3", "rel": "COVERS", "target": "contexteng"}, {"source": "c3", "rel": "COVERS", "target": "specdriven"}, {"source": "c4", "rel": "COVERS", "target": "rag"}, {"source": "c4", "rel": "COVERS", "target": "embeddings"}, {"source": "c5", "rel": "COVERS", "target": "kg"}, {"source": "c5", "rel": "COVERS", "target": "propgraph"}, {"source": "c6", "rel": "COVERS", "target": "graphrag"}, {"source": "c7", "rel": "COVERS", "target": "graphify"}, {"source": "c8", "rel": "COVERS", "target": "graphiti"}, {"source": "c8", "rel": "COVERS", "target": "memory"}, {"source": "c9", "rel": "COVERS", "target": "treesitter"}, {"source": "c9", "rel": "COVERS", "target": "ast"}, {"source": "c10", "rel": "COVERS", "target": "neo4j"}, {"source": "c10", "rel": "COVERS", "target": "qdrant"}, {"source": "c11", "rel": "COVERS", "target": "mcp"}, {"source": "c11", "rel": "COVERS", "target": "claudecode"}, {"source": "c12", "rel": "RECOMMENDS", "target": "graphify"}, {"source": "c12", "rel": "RECOMMENDS", "target": "claudecode"}, {"source": "cA", "rel": "CATALOGS", "target": "sourcegraph"}, {"source": "cA", "rel": "CATALOGS", "target": "llamaindex"}, {"source": "cA", "rel": "CATALOGS", "target": "deepwiki"}, {"source": "cA", "rel": "CATALOGS", "target": "gitingest"}, {"source": "cA", "rel": "CATALOGS", "target": "langgraph"}, {"source": "cA", "rel": "CATALOGS", "target": "continue"}, {"source": "graphify", "rel": "USES", "target": "treesitter"}, {"source": "graphify", "rel": "BUILDS", "target": "kg"}, {"source": "graphify", "rel": "STORES_IN", "target": "neo4j"}, {"source": "graphiti", "rel": "STORES_IN", "target": "neo4j"}, {"source": "graphiti", "rel": "ENABLES", "target": "memory"}, {"source": "treesitter", "rel": "PRODUCES", "target": "ast"}, {"source": "neo4j", "rel": "IMPLEMENTS", "target": "propgraph"}, {"source": "qdrant", "rel": "STORES", "target": "embeddings"}, {"source": "rag", "rel": "USES", "target": "embeddings"}, {"source": "contexteng", "rel": "EVOLVES_FROM", "target": "prompteng"}, {"source": "rag", "rel": "IMPLEMENTS", "target": "contexteng"}, {"source": "specdriven", "rel": "COMPLEMENTS", "target": "contexteng"}, {"source": "graphrag", "rel": "COMBINES", "target": "rag"}, {"source": "graphrag", "rel": "COMBINES", "target": "kg"}, {"source": "mcp", "rel": "CONNECTS", "target": "neo4j"}, {"source": "mcp", "rel": "CONNECTS", "target": "qdrant"}, {"source": "claudecode", "rel": "SUPPORTS", "target": "mcp"}, {"source": "codex", "rel": "SUPPORTS", "target": "mcp"}, {"source": "cursor", "rel": "SUPPORTS", "target": "mcp"}, {"source": "geminicli", "rel": "SUPPORTS", "target": "mcp"}, {"source": "continue", "rel": "SUPPORTS", "target": "mcp"}, {"source": "opencode", "rel": "SUPPORTS", "target": "mcp"}, {"source": "graphify", "rel": "INTEGRATES_WITH", "target": "claudecode"}, {"source": "graphify", "rel": "INTEGRATES_WITH", "target": "cursor"}, {"source": "graphify", "rel": "INTEGRATES_WITH", "target": "codex"}, {"source": "llamaindex", "rel": "IMPLEMENTS", "target": "rag"}, {"source": "sourcegraph", "rel": "RELATED_TO", "target": "kg"}]};
+const COLORS = { chapter: "#60a5fa", tool: "#4ade80", concept: "#c084fc" };
+const canvas = document.getElementById("c"), ctx = canvas.getContext("2d");
+const info = document.getElementById("info");
+let W, H;
+function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+addEventListener("resize", resize); resize();
+
+const nodes = DATA.nodes.map((n, i) => ({ ...n,
+  x: W/2 + Math.cos(i * 2.399) * (120 + 9*i),
+  y: H/2 + Math.sin(i * 2.399) * (90 + 6*i),
+  vx: 0, vy: 0 }));
+const byId = Object.fromEntries(nodes.map(n => [n.id, n]));
+const edges = DATA.edges.map(e => ({ ...e, a: byId[e.source], b: byId[e.target] }));
+const degree = {}; edges.forEach(e => { degree[e.source]=(degree[e.source]||0)+1;
+                                        degree[e.target]=(degree[e.target]||0)+1; });
+const R = n => 7 + Math.min(11, (degree[n.id]||1) * 1.3);
+
+let dragging = null, hovered = null;
+function tick() {
+  for (const e of edges) {                        // springs
+    const dx = e.b.x - e.a.x, dy = e.b.y - e.a.y;
+    const d = Math.hypot(dx, dy) || 1, f = (d - 130) * 0.004;
+    e.a.vx += f*dx/d; e.a.vy += f*dy/d; e.b.vx -= f*dx/d; e.b.vy -= f*dy/d;
+  }
+  for (let i = 0; i < nodes.length; i++)          // repulsion
+    for (let j = i+1; j < nodes.length; j++) {
+      const a = nodes[i], b = nodes[j];
+      let dx = b.x-a.x, dy = b.y-a.y, d2 = dx*dx+dy*dy || 1;
+      if (d2 < 90000) { const f = 1400 / d2, d = Math.sqrt(d2);
+        a.vx -= f*dx/d; a.vy -= f*dy/d; b.vx += f*dx/d; b.vy += f*dy/d; }
+    }
+  for (const n of nodes) {                        // centering + integrate
+    n.vx += (W/2 - n.x) * 0.0008; n.vy += (H/2 - n.y) * 0.0008;
+    if (n !== dragging) { n.x += n.vx *= 0.85; n.y += n.vy *= 0.85; }
+  }
+}
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  for (const e of edges) {
+    const hot = hovered && (e.a === hovered || e.b === hovered);
+    ctx.strokeStyle = hot ? "#e2e8f0" : "#33415577";
+    ctx.lineWidth = hot ? 1.6 : 1;
+    ctx.beginPath(); ctx.moveTo(e.a.x, e.a.y); ctx.lineTo(e.b.x, e.b.y); ctx.stroke();
+    if (hot) {
+      ctx.fillStyle = "#fbbf24"; ctx.font = "10px sans-serif"; ctx.textAlign = "center";
+      ctx.fillText(e.rel, (e.a.x+e.b.x)/2, (e.a.y+e.b.y)/2 - 4);
+    }
+  }
+  for (const n of nodes) {
+    ctx.beginPath(); ctx.arc(n.x, n.y, R(n), 0, 7);
+    ctx.fillStyle = COLORS[n.type]; ctx.globalAlpha = hovered && n !== hovered &&
+      !edges.some(e => (e.a===hovered&&e.b===n)||(e.b===hovered&&e.a===n)) ? 0.25 : 1;
+    ctx.fill(); ctx.globalAlpha = 1;
+    ctx.fillStyle = "#e2e8f0"; ctx.font = (n===hovered?"bold ":"") + "11px sans-serif";
+    ctx.textAlign = "center"; ctx.fillText(n.label, n.x, n.y - R(n) - 5);
+  }
+}
+(function loop() { tick(); draw(); requestAnimationFrame(loop); })();
+
+function pick(x, y) { return nodes.find(n => Math.hypot(n.x-x, n.y-y) < R(n)+4); }
+canvas.onmousedown = e => { dragging = pick(e.clientX, e.clientY); };
+canvas.onmouseup = () => { dragging = null; };
+canvas.onmousemove = e => {
+  if (dragging) { dragging.x = e.clientX; dragging.y = e.clientY; return; }
+  hovered = pick(e.clientX, e.clientY);
+  canvas.style.cursor = hovered ? "pointer" : "default";
+  if (hovered) {
+    const rels = edges.filter(x => x.a===hovered || x.b===hovered)
+      .map(x => x.a===hovered ? `→ ${x.rel} → ${x.b.label}` : `← ${x.rel} ← ${x.a.label}`);
+    info.style.display = "block";
+    info.innerHTML = `<b>${hovered.label}</b><br>` +
+      (hovered.url ? `<a href="${hovered.url}">open</a><br>` : "") +
+      `<span style="color:#94a3b8">${rels.slice(0, 8).join("<br>")}` +
+      (rels.length > 8 ? `<br>… ${rels.length-8} more` : "") + `</span>`;
+  } else info.style.display = "none";
+};
+canvas.onclick = e => { const n = pick(e.clientX, e.clientY);
+  if (n && n.url) open(n.url, "_blank"); };
+</script>
+</body>
+</html>

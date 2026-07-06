@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 500" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<rect x="0" y="0" width="940" height="500" rx="12" fill="#0f172a"/>
+<text x="470" y="34" text-anchor="middle" fill="#e2e8f0" font-size="18" font-weight="700">Project Knowledge Graph — Concepts, Stack &amp; Agents</text>
+<line x1="330" y1="215" x2="140" y2="215" stroke="#334155" stroke-width="1.4"/>
+<line x1="330" y1="215" x2="700" y2="80" stroke="#334155" stroke-width="1.4"/>
+<line x1="330" y1="215" x2="680" y2="215" stroke="#334155" stroke-width="1.4"/>
+<line x1="520" y1="215" x2="680" y2="215" stroke="#334155" stroke-width="1.4"/>
+<line x1="520" y1="215" x2="845" y2="80" stroke="#334155" stroke-width="1.4"/>
+<line x1="140" y1="215" x2="60" y2="300" stroke="#334155" stroke-width="1.4"/>
+<line x1="680" y1="215" x2="610" y2="305" stroke="#334155" stroke-width="1.4"/>
+<line x1="830" y1="215" x2="830" y2="305" stroke="#334155" stroke-width="1.4"/>
+<line x1="400" y1="80" x2="830" y2="305" stroke="#334155" stroke-width="1.4"/>
+<line x1="255" y1="80" x2="100" y2="80" stroke="#334155" stroke-width="1.4"/>
+<line x1="400" y1="80" x2="255" y2="80" stroke="#334155" stroke-width="1.4"/>
+<line x1="545" y1="80" x2="400" y2="80" stroke="#334155" stroke-width="1.4"/>
+<line x1="545" y1="80" x2="700" y2="80" stroke="#334155" stroke-width="1.4"/>
+<line x1="470" y1="330" x2="680" y2="215" stroke="#334155" stroke-width="1.4"/>
+<line x1="470" y1="330" x2="830" y2="215" stroke="#334155" stroke-width="1.4"/>
+<line x1="150" y1="430" x2="470" y2="330" stroke="#334155" stroke-width="1.4"/>
+<line x1="310" y1="430" x2="470" y2="330" stroke="#334155" stroke-width="1.4"/>
+<line x1="470" y1="430" x2="470" y2="330" stroke="#334155" stroke-width="1.4"/>
+<line x1="630" y1="430" x2="470" y2="330" stroke="#334155" stroke-width="1.4"/>
+<line x1="790" y1="430" x2="470" y2="330" stroke="#334155" stroke-width="1.4"/>
+<line x1="330" y1="215" x2="150" y2="430" stroke="#334155" stroke-width="1.4"/>
+<line x1="330" y1="215" x2="470" y2="430" stroke="#334155" stroke-width="1.4"/>
+<line x1="330" y1="215" x2="310" y2="430" stroke="#334155" stroke-width="1.4"/>
+<circle cx="100" cy="80" r="30" fill="#4a1d6e" stroke="#a855f7" stroke-width="1.5"/>
+<text x="100" y="79" text-anchor="middle" fill="#e9d5ff" font-size="9.5" font-weight="600">Prompt</text>
+<text x="100" y="90" text-anchor="middle" fill="#e9d5ff" font-size="9.5" font-weight="600">Engineering</text>
+<circle cx="255" cy="80" r="30" fill="#4a1d6e" stroke="#a855f7" stroke-width="1.5"/>
+<text x="255" y="79" text-anchor="middle" fill="#e9d5ff" font-size="9.5" font-weight="600">Context</text>
+<text x="255" y="90" text-anchor="middle" fill="#e9d5ff" font-size="9.5" font-weight="600">Engineering</text>
+<circle cx="400" cy="80" r="30" fill="#4a1d6e" stroke="#a855f7" stroke-width="1.5"/>
+<text x="400" y="84" text-anchor="middle" fill="#e9d5ff" font-size="10" font-weight="600">RAG</text>
+<circle cx="545" cy="80" r="30" fill="#4a1d6e" stroke="#a855f7" stroke-width="1.5"/>
+<text x="545" y="84" text-anchor="middle" fill="#e9d5ff" font-size="10" font-weight="600">GraphRAG</text>
+<circle cx="700" cy="80" r="30" fill="#4a1d6e" stroke="#a855f7" stroke-width="1.5"/>
+<text x="700" y="79" text-anchor="middle" fill="#e9d5ff" font-size="9.5" font-weight="600">Knowledge</text>
+<text x="700" y="90" text-anchor="middle" fill="#e9d5ff" font-size="9.5" font-weight="600">Graph</text>
+<circle cx="845" cy="80" r="30" fill="#4a1d6e" stroke="#a855f7" stroke-width="1.5"/>
+<text x="845" y="79" text-anchor="middle" fill="#e9d5ff" font-size="9.5" font-weight="600">Agent</text>
+<text x="845" y="90" text-anchor="middle" fill="#e9d5ff" font-size="9.5" font-weight="600">Memory</text>
+<circle cx="140" cy="215" r="30" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+<text x="140" y="219" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="600">Tree-sitter</text>
+<circle cx="60" cy="300" r="30" fill="#4a1d6e" stroke="#a855f7" stroke-width="1.5"/>
+<text x="60" y="304" text-anchor="middle" fill="#e9d5ff" font-size="10" font-weight="600">AST</text>
+<circle cx="330" cy="215" r="30" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+<text x="330" y="219" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="600">Graphify</text>
+<circle cx="520" cy="215" r="30" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+<text x="520" y="219" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="600">Graphiti</text>
+<circle cx="680" cy="215" r="30" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+<text x="680" y="219" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="600">Neo4j</text>
+<circle cx="830" cy="215" r="30" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+<text x="830" y="219" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="600">Qdrant</text>
+<circle cx="830" cy="305" r="30" fill="#4a1d6e" stroke="#a855f7" stroke-width="1.5"/>
+<text x="830" y="309" text-anchor="middle" fill="#e9d5ff" font-size="10" font-weight="600">Embeddings</text>
+<circle cx="610" cy="305" r="30" fill="#4a1d6e" stroke="#a855f7" stroke-width="1.5"/>
+<text x="610" y="304" text-anchor="middle" fill="#e9d5ff" font-size="9.5" font-weight="600">Property</text>
+<text x="610" y="315" text-anchor="middle" fill="#e9d5ff" font-size="9.5" font-weight="600">Graph</text>
+<circle cx="470" cy="330" r="30" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+<text x="470" y="334" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="600">MCP</text>
+<circle cx="150" cy="430" r="30" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+<text x="150" y="434" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="600">Claude Code</text>
+<circle cx="310" cy="430" r="30" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+<text x="310" y="434" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="600">Codex</text>
+<circle cx="470" cy="430" r="30" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+<text x="470" y="434" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="600">Cursor</text>
+<circle cx="630" cy="430" r="30" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+<text x="630" y="434" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="600">Gemini CLI</text>
+<circle cx="790" cy="430" r="30" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+<text x="790" y="434" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="600">Continue</text>
+<text x="470" y="486" text-anchor="middle" fill="#94a3b8" font-size="11">Interactive version with all 40 nodes: knowledge-graph/index.html · Neo4j import: knowledge-graph/graph.cypher</text>
+</svg>
