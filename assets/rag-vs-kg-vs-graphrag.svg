@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="400" rx="12" fill="#0f172a"/>
+  <text x="450" y="36" text-anchor="middle" fill="#e2e8f0" font-size="20" font-weight="700">Three Retrieval Paradigms</text>
+
+  <!-- RAG column -->
+  <rect x="30" y="60" width="260" height="310" rx="10" fill="#1e293b" stroke="#334155"/>
+  <text x="160" y="90" text-anchor="middle" fill="#f87171" font-size="16" font-weight="700">RAG</text>
+  <text x="160" y="112" text-anchor="middle" fill="#94a3b8" font-size="12">Vector search over chunks</text>
+
+  <rect x="60" y="130" width="200" height="34" rx="8" fill="#334155"/>
+  <text x="160" y="152" text-anchor="middle" fill="#e2e8f0" font-size="12">Query → Embedding</text>
+  <line x1="160" y1="164" x2="160" y2="182" stroke="#64748b" stroke-width="2" marker-end="url(#arrow2)"/>
+  <rect x="60" y="186" width="200" height="34" rx="8" fill="#334155"/>
+  <text x="160" y="208" text-anchor="middle" fill="#e2e8f0" font-size="12">Vector DB → Top-K chunks</text>
+  <line x1="160" y1="220" x2="160" y2="238" stroke="#64748b" stroke-width="2" marker-end="url(#arrow2)"/>
+  <rect x="60" y="242" width="200" height="34" rx="8" fill="#334155"/>
+  <text x="160" y="264" text-anchor="middle" fill="#e2e8f0" font-size="12">LLM</text>
+
+  <text x="160" y="310" text-anchor="middle" fill="#4ade80" font-size="12">✓ Fast, simple, "find similar"</text>
+  <text x="160" y="332" text-anchor="middle" fill="#f87171" font-size="12">✗ No relationships</text>
+  <text x="160" y="352" text-anchor="middle" fill="#f87171" font-size="12">✗ Fragmented understanding</text>
+
+  <!-- KG column -->
+  <rect x="320" y="60" width="260" height="310" rx="10" fill="#1e293b" stroke="#334155"/>
+  <text x="450" y="90" text-anchor="middle" fill="#60a5fa" font-size="16" font-weight="700">Knowledge Graph</text>
+  <text x="450" y="112" text-anchor="middle" fill="#94a3b8" font-size="12">Explicit entities &amp; edges</text>
+
+  <circle cx="380" cy="165" r="24" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="380" y="169" text-anchor="middle" fill="#bfdbfe" font-size="10">Service</text>
+  <circle cx="520" cy="165" r="24" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="520" y="169" text-anchor="middle" fill="#bfdbfe" font-size="10">Service</text>
+  <line x1="404" y1="165" x2="492" y2="165" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="450" y="156" text-anchor="middle" fill="#93c5fd" font-size="10">CALLS</text>
+
+  <circle cx="380" cy="245" r="24" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="380" y="249" text-anchor="middle" fill="#bfdbfe" font-size="9">Controller</text>
+  <circle cx="520" cy="245" r="24" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="520" y="249" text-anchor="middle" fill="#bfdbfe" font-size="10">Table</text>
+  <line x1="404" y1="245" x2="492" y2="245" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="450" y="236" text-anchor="middle" fill="#93c5fd" font-size="10">WRITES</text>
+
+  <text x="450" y="310" text-anchor="middle" fill="#4ade80" font-size="12">✓ Dependency &amp; impact analysis</text>
+  <text x="450" y="332" text-anchor="middle" fill="#4ade80" font-size="12">✓ Multi-hop reasoning</text>
+  <text x="450" y="352" text-anchor="middle" fill="#f87171" font-size="12">✗ Weak at fuzzy similarity</text>
+
+  <!-- GraphRAG column -->
+  <rect x="610" y="60" width="260" height="310" rx="10" fill="#1e293b" stroke="#a855f7"/>
+  <text x="740" y="90" text-anchor="middle" fill="#c084fc" font-size="16" font-weight="700">GraphRAG</text>
+  <text x="740" y="112" text-anchor="middle" fill="#94a3b8" font-size="12">Traversal + vectors, merged</text>
+
+  <rect x="640" y="130" width="200" height="34" rx="8" fill="#334155"/>
+  <text x="740" y="152" text-anchor="middle" fill="#e2e8f0" font-size="12">Query</text>
+  <line x1="700" y1="164" x2="675" y2="184" stroke="#64748b" stroke-width="2" marker-end="url(#arrow2)"/>
+  <line x1="780" y1="164" x2="805" y2="184" stroke="#64748b" stroke-width="2" marker-end="url(#arrow2)"/>
+  <rect x="628" y="188" width="106" height="34" rx="8" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="681" y="210" text-anchor="middle" fill="#bfdbfe" font-size="11">Graph traversal</text>
+  <rect x="746" y="188" width="106" height="34" rx="8" fill="#4a1d3f" stroke="#ec4899"/>
+  <text x="799" y="210" text-anchor="middle" fill="#fbcfe8" font-size="11">Vector search</text>
+  <line x1="681" y1="222" x2="716" y2="242" stroke="#64748b" stroke-width="2" marker-end="url(#arrow2)"/>
+  <line x1="799" y1="222" x2="764" y2="242" stroke="#64748b" stroke-width="2" marker-end="url(#arrow2)"/>
+  <rect x="640" y="246" width="200" height="34" rx="8" fill="#334155"/>
+  <text x="740" y="268" text-anchor="middle" fill="#e2e8f0" font-size="12">Merged context → LLM</text>
+
+  <text x="740" y="310" text-anchor="middle" fill="#4ade80" font-size="12">✓ Structure + similarity</text>
+  <text x="740" y="332" text-anchor="middle" fill="#4ade80" font-size="12">✓ Best for engineering systems</text>
+  <text x="740" y="352" text-anchor="middle" fill="#fbbf24" font-size="12">◆ The 2026 default</text>
+</svg>

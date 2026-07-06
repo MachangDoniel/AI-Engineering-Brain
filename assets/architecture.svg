@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="440" rx="12" fill="#0f172a"/>
+  <text x="450" y="36" text-anchor="middle" fill="#e2e8f0" font-size="20" font-weight="700">The AI Engineering Brain — Reference Architecture</text>
+
+  <!-- Sources -->
+  <rect x="40" y="70" width="820" height="56" rx="10" fill="#1e293b" stroke="#334155"/>
+  <text x="450" y="94" text-anchor="middle" fill="#93c5fd" font-size="14" font-weight="600">Repositories</text>
+  <text x="450" y="114" text-anchor="middle" fill="#94a3b8" font-size="12">Flutter · Spring Boot · Laravel · Android · iOS · SQL schemas · Docs · Infra</text>
+
+  <line x1="450" y1="126" x2="450" y2="152" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Parsing / extraction row -->
+  <rect x="150" y="156" width="280" height="56" rx="10" fill="#14532d" stroke="#22c55e"/>
+  <text x="290" y="180" text-anchor="middle" fill="#bbf7d0" font-size="14" font-weight="600">Tree-sitter</text>
+  <text x="290" y="199" text-anchor="middle" fill="#86efac" font-size="12">Code → AST (local parsing)</text>
+
+  <rect x="470" y="156" width="280" height="56" rx="10" fill="#14532d" stroke="#22c55e"/>
+  <text x="610" y="180" text-anchor="middle" fill="#bbf7d0" font-size="14" font-weight="600">Graphify + Graphiti</text>
+  <text x="610" y="199" text-anchor="middle" fill="#86efac" font-size="12">Entities · Relationships · Temporal facts</text>
+
+  <line x1="430" y1="184" x2="466" y2="184" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <line x1="290" y1="212" x2="290" y2="240" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="610" y1="212" x2="610" y2="240" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Storage row -->
+  <rect x="150" y="244" width="280" height="56" rx="10" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="290" y="268" text-anchor="middle" fill="#bfdbfe" font-size="14" font-weight="600">Neo4j — Knowledge Graph</text>
+  <text x="290" y="287" text-anchor="middle" fill="#93c5fd" font-size="12">CALLS · WRITES · IMPORTS · DEPLOYS_TO</text>
+
+  <rect x="470" y="244" width="280" height="56" rx="10" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="610" y="268" text-anchor="middle" fill="#bfdbfe" font-size="14" font-weight="600">Qdrant — Vector Search</text>
+  <text x="610" y="287" text-anchor="middle" fill="#93c5fd" font-size="12">Code chunks · Docs · ADRs · API specs</text>
+
+  <line x1="290" y1="300" x2="440" y2="330" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="610" y1="300" x2="460" y2="330" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- MCP -->
+  <rect x="320" y="334" width="260" height="44" rx="10" fill="#4a1d6e" stroke="#a855f7"/>
+  <text x="450" y="361" text-anchor="middle" fill="#e9d5ff" font-size="14" font-weight="600">MCP Server (Model Context Protocol)</text>
+
+  <line x1="450" y1="378" x2="450" y2="398" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Agents -->
+  <rect x="150" y="400" width="600" height="1" fill="none"/>
+  <text x="450" y="422" text-anchor="middle" fill="#fbbf24" font-size="14" font-weight="600">Claude Code · Codex · Cursor · Gemini CLI · Continue</text>
+</svg>
