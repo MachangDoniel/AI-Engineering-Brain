@@ -1,4 +1,4 @@
-> [◀ Chapter 11](11-mcp-and-ai-agents.md) · [🏠 Home](../README.md) · [Appendix: Tool Directory ▶](../appendix/tool-directory.md)
+> [◀ Chapter 11](11-mcp-and-ai-agents.md) · [🏠 Home](../README.md) · [Chapter 13 ▶](13-compound-engineering.md)
 
 ---
 
@@ -98,4 +98,4 @@ It is the foundation of next-generation AI-assisted software engineering — and
 
 ---
 
-> [◀ Chapter 11: MCP & AI Coding Agents](11-mcp-and-ai-agents.md) · [🏠 Home](../README.md) · [Appendix: Tool Directory ▶](../appendix/tool-directory.md)
+> [◀ Chapter 11: MCP & AI Coding Agents](11-mcp-and-ai-agents.md) · [🏠 Home](../README.md) · [Chapter 13: Compound Engineering ▶](13-compound-engineering.md)

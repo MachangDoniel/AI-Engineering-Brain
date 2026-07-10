@@ -48,6 +48,7 @@ Modern AI coding assistants are powerful, but they mostly see your code as *text
 |---|---------|-------------------|
 | 11 | [MCP & AI Coding Agents](chapters/11-mcp-and-ai-agents.md) | Connecting the brain to Claude Code, Codex, Cursor, Gemini CLI, and more |
 | 12 | [Costs, Deployment & the Road Ahead](chapters/12-costs-deployment-future.md) | Budgets, self-hosted vs SaaS, startup ideas, the 2027–2030 outlook |
+| 13 | [Compound Engineering](chapters/13-compound-engineering.md) | The Plan/Work/Review/Compound loop, CLAUDE.md, solution docs, and how they feed the knowledge graph |
 | A | [Appendix: Tool Directory](appendix/tool-directory.md) | Reference catalog of 10+ tools with verified links and use cases |
 
 > **New here?** Start with [Chapter 1](chapters/01-executive-summary.md) and follow the *Next* links at the bottom of each chapter.

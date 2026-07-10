@@ -1,6 +1,6 @@
 # Appendix A — Tool Directory
 
-> [◀ Chapter 12](../chapters/12-costs-deployment-future.md) · [🏠 Home](../README.md)
+> [◀ Chapter 13](../chapters/13-compound-engineering.md) · [🏠 Home](../README.md)
 
 A reference catalog of the tools that make up the engineering-intelligence ecosystem. Each entry links to the official project.
 
