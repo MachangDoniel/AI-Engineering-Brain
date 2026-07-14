@@ -1,4 +1,4 @@
-> [◀ Chapter 12](12-costs-deployment-future.md) · [🏠 Home](../README.md) · [Appendix: Tool Directory ▶](../appendix/tool-directory.md)
+> [◀ Chapter 12](12-costs-deployment-future.md) · [🏠 Home](../README.md) · [Chapter 14: Multi-Agent Systems ▶](14-multi-agent-systems.md)
 
 ---
 
@@ -179,4 +179,4 @@ Compound engineering is not a new tool to adopt — it requires none of the stac
 
 ---
 
-> [◀ Chapter 12: Costs, Deployment & the Road Ahead](12-costs-deployment-future.md) · [🏠 Home](../README.md) · [Appendix: Tool Directory ▶](../appendix/tool-directory.md)
+> [◀ Chapter 12: Costs, Deployment & the Road Ahead](12-costs-deployment-future.md) · [🏠 Home](../README.md) · [Chapter 14: Multi-Agent Systems ▶](14-multi-agent-systems.md)

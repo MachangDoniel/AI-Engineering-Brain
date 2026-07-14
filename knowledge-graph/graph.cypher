@@ -14,6 +14,9 @@ CREATE (:Chapter {id: 'c9', name: "Ch 9 — Tree-sitter", url: "../chapters/09-t
 CREATE (:Chapter {id: 'c10', name: "Ch 10 — Neo4j & Qdrant", url: "../chapters/10-neo4j-and-qdrant.md"});
 CREATE (:Chapter {id: 'c11', name: "Ch 11 — MCP & Agents", url: "../chapters/11-mcp-and-ai-agents.md"});
 CREATE (:Chapter {id: 'c12', name: "Ch 12 — Production", url: "../chapters/12-costs-deployment-future.md"});
+CREATE (:Chapter {id: 'c13', name: "Ch 13 — Compound Engineering", url: "../chapters/13-compound-engineering.md"});
+CREATE (:Chapter {id: 'c14', name: "Ch 14 — Multi-Agent Systems", url: "../chapters/14-multi-agent-systems.md"});
+CREATE (:Chapter {id: 'c15', name: "Ch 15 — Virtual Organizations", url: "../chapters/15-virtual-organizations.md"});
 CREATE (:Chapter {id: 'cA', name: "Appendix — Tool Directory", url: "../appendix/tool-directory.md"});
 CREATE (:Tool {id: 'graphify', name: "Graphify", url: "https://github.com/safishamsi/graphify"});
 CREATE (:Tool {id: 'graphiti', name: "Graphiti", url: "https://github.com/getzep/graphiti"});
@@ -42,6 +45,10 @@ CREATE (:Concept {id: 'memory', name: "Agent Memory"});
 CREATE (:Concept {id: 'ast', name: "AST"});
 CREATE (:Concept {id: 'embeddings', name: "Embeddings"});
 CREATE (:Concept {id: 'propgraph', name: "Property Graph"});
+CREATE (:Concept {id: 'compound', name: "Compound Engineering"});
+CREATE (:Concept {id: 'orchestration', name: "Agent Orchestration"});
+CREATE (:Concept {id: 'mas', name: "Multi-Agent System"});
+CREATE (:Concept {id: 'vo', name: "Virtual Organization"});
 
 MATCH (a {id: 'c1'}), (b {id: 'c2'}) CREATE (a)-[:FOLLOWED_BY]->(b);
 MATCH (a {id: 'c2'}), (b {id: 'c3'}) CREATE (a)-[:FOLLOWED_BY]->(b);
@@ -54,7 +61,10 @@ MATCH (a {id: 'c8'}), (b {id: 'c9'}) CREATE (a)-[:FOLLOWED_BY]->(b);
 MATCH (a {id: 'c9'}), (b {id: 'c10'}) CREATE (a)-[:FOLLOWED_BY]->(b);
 MATCH (a {id: 'c10'}), (b {id: 'c11'}) CREATE (a)-[:FOLLOWED_BY]->(b);
 MATCH (a {id: 'c11'}), (b {id: 'c12'}) CREATE (a)-[:FOLLOWED_BY]->(b);
-MATCH (a {id: 'c12'}), (b {id: 'cA'}) CREATE (a)-[:FOLLOWED_BY]->(b);
+MATCH (a {id: 'c12'}), (b {id: 'c13'}) CREATE (a)-[:FOLLOWED_BY]->(b);
+MATCH (a {id: 'c13'}), (b {id: 'c14'}) CREATE (a)-[:FOLLOWED_BY]->(b);
+MATCH (a {id: 'c14'}), (b {id: 'c15'}) CREATE (a)-[:FOLLOWED_BY]->(b);
+MATCH (a {id: 'c15'}), (b {id: 'cA'}) CREATE (a)-[:FOLLOWED_BY]->(b);
 MATCH (a {id: 'c1'}), (b {id: 'kg'}) CREATE (a)-[:COVERS]->(b);
 MATCH (a {id: 'c2'}), (b {id: 'rag'}) CREATE (a)-[:COVERS]->(b);
 MATCH (a {id: 'c2'}), (b {id: 'graphrag'}) CREATE (a)-[:COVERS]->(b);
@@ -77,6 +87,10 @@ MATCH (a {id: 'c11'}), (b {id: 'mcp'}) CREATE (a)-[:COVERS]->(b);
 MATCH (a {id: 'c11'}), (b {id: 'claudecode'}) CREATE (a)-[:COVERS]->(b);
 MATCH (a {id: 'c12'}), (b {id: 'graphify'}) CREATE (a)-[:RECOMMENDS]->(b);
 MATCH (a {id: 'c12'}), (b {id: 'claudecode'}) CREATE (a)-[:RECOMMENDS]->(b);
+MATCH (a {id: 'c13'}), (b {id: 'compound'}) CREATE (a)-[:COVERS]->(b);
+MATCH (a {id: 'c14'}), (b {id: 'mas'}) CREATE (a)-[:COVERS]->(b);
+MATCH (a {id: 'c14'}), (b {id: 'orchestration'}) CREATE (a)-[:COVERS]->(b);
+MATCH (a {id: 'c15'}), (b {id: 'vo'}) CREATE (a)-[:COVERS]->(b);
 MATCH (a {id: 'cA'}), (b {id: 'sourcegraph'}) CREATE (a)-[:CATALOGS]->(b);
 MATCH (a {id: 'cA'}), (b {id: 'llamaindex'}) CREATE (a)-[:CATALOGS]->(b);
 MATCH (a {id: 'cA'}), (b {id: 'deepwiki'}) CREATE (a)-[:CATALOGS]->(b);
@@ -110,6 +124,16 @@ MATCH (a {id: 'graphify'}), (b {id: 'cursor'}) CREATE (a)-[:INTEGRATES_WITH]->(b
 MATCH (a {id: 'graphify'}), (b {id: 'codex'}) CREATE (a)-[:INTEGRATES_WITH]->(b);
 MATCH (a {id: 'llamaindex'}), (b {id: 'rag'}) CREATE (a)-[:IMPLEMENTS]->(b);
 MATCH (a {id: 'sourcegraph'}), (b {id: 'kg'}) CREATE (a)-[:RELATED_TO]->(b);
+MATCH (a {id: 'compound'}), (b {id: 'kg'}) CREATE (a)-[:FEEDS]->(b);
+MATCH (a {id: 'compound'}), (b {id: 'specdriven'}) CREATE (a)-[:BUILDS_ON]->(b);
+MATCH (a {id: 'mas'}), (b {id: 'orchestration'}) CREATE (a)-[:USES]->(b);
+MATCH (a {id: 'mas'}), (b {id: 'memory'}) CREATE (a)-[:REQUIRES]->(b);
+MATCH (a {id: 'mas'}), (b {id: 'mcp'}) CREATE (a)-[:USES]->(b);
+MATCH (a {id: 'claudecode'}), (b {id: 'mas'}) CREATE (a)-[:IMPLEMENTS]->(b);
+MATCH (a {id: 'vo'}), (b {id: 'mas'}) CREATE (a)-[:CONTAINS]->(b);
+MATCH (a {id: 'vo'}), (b {id: 'memory'}) CREATE (a)-[:REQUIRES]->(b);
+MATCH (a {id: 'vo'}), (b {id: 'kg'}) CREATE (a)-[:USES]->(b);
+MATCH (a {id: 'vo'}), (b {id: 'compound'}) CREATE (a)-[:REQUIRES]->(b);
 
 // Example queries
 // Which chapters cover the recommended stack?

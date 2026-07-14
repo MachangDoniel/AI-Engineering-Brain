@@ -69,5 +69,5 @@
 <text x="630" y="434" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="600">Gemini CLI</text>
 <circle cx="790" cy="430" r="30" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
 <text x="790" y="434" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="600">Continue</text>
-<text x="470" y="486" text-anchor="middle" fill="#94a3b8" font-size="11">Interactive version with all 40 nodes: knowledge-graph/index.html · Neo4j import: knowledge-graph/graph.cypher</text>
+<text x="470" y="486" text-anchor="middle" fill="#94a3b8" font-size="11">Interactive version with all 47 nodes: knowledge-graph/index.html · Neo4j import: knowledge-graph/graph.cypher</text>
 </svg>

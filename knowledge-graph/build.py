@@ -33,6 +33,9 @@ NODES = [
     {"id": "c10", "label": "Ch 10 — Neo4j & Qdrant",          "type": CH, "url": "../chapters/10-neo4j-and-qdrant.md"},
     {"id": "c11", "label": "Ch 11 — MCP & Agents",            "type": CH, "url": "../chapters/11-mcp-and-ai-agents.md"},
     {"id": "c12", "label": "Ch 12 — Production",              "type": CH, "url": "../chapters/12-costs-deployment-future.md"},
+    {"id": "c13", "label": "Ch 13 — Compound Engineering",    "type": CH, "url": "../chapters/13-compound-engineering.md"},
+    {"id": "c14", "label": "Ch 14 — Multi-Agent Systems",     "type": CH, "url": "../chapters/14-multi-agent-systems.md"},
+    {"id": "c15", "label": "Ch 15 — Virtual Organizations",   "type": CH, "url": "../chapters/15-virtual-organizations.md"},
     {"id": "cA",  "label": "Appendix — Tool Directory",       "type": CH, "url": "../appendix/tool-directory.md"},
     # Tools
     {"id": "graphify",   "label": "Graphify",    "type": TOOL, "url": "https://github.com/safishamsi/graphify"},
@@ -63,13 +66,17 @@ NODES = [
     {"id": "ast",        "label": "AST",                 "type": CONCEPT},
     {"id": "embeddings", "label": "Embeddings",          "type": CONCEPT},
     {"id": "propgraph",  "label": "Property Graph",      "type": CONCEPT},
+    {"id": "compound",   "label": "Compound Engineering","type": CONCEPT},
+    {"id": "orchestration", "label": "Agent Orchestration", "type": CONCEPT},
+    {"id": "mas",        "label": "Multi-Agent System",  "type": CONCEPT},
+    {"id": "vo",         "label": "Virtual Organization","type": CONCEPT},
 ]
 
 E = lambda s, r, t: {"source": s, "rel": r, "target": t}
 EDGES = [
     # Reading order
-    *[E(f"c{i}", "FOLLOWED_BY", f"c{i+1}") for i in range(1, 12)],
-    E("c12", "FOLLOWED_BY", "cA"),
+    *[E(f"c{i}", "FOLLOWED_BY", f"c{i+1}") for i in range(1, 15)],
+    E("c15", "FOLLOWED_BY", "cA"),
     # Chapter -> topic coverage
     E("c1", "COVERS", "kg"),
     E("c2", "COVERS", "rag"), E("c2", "COVERS", "graphrag"),
@@ -83,6 +90,9 @@ EDGES = [
     E("c10", "COVERS", "neo4j"), E("c10", "COVERS", "qdrant"),
     E("c11", "COVERS", "mcp"), E("c11", "COVERS", "claudecode"),
     E("c12", "RECOMMENDS", "graphify"), E("c12", "RECOMMENDS", "claudecode"),
+    E("c13", "COVERS", "compound"),
+    E("c14", "COVERS", "mas"), E("c14", "COVERS", "orchestration"),
+    E("c15", "COVERS", "vo"),
     E("cA", "CATALOGS", "sourcegraph"), E("cA", "CATALOGS", "llamaindex"),
     E("cA", "CATALOGS", "deepwiki"), E("cA", "CATALOGS", "gitingest"),
     E("cA", "CATALOGS", "langgraph"), E("cA", "CATALOGS", "continue"),
@@ -114,6 +124,17 @@ EDGES = [
     E("graphify", "INTEGRATES_WITH", "codex"),
     E("llamaindex", "IMPLEMENTS", "rag"),
     E("sourcegraph", "RELATED_TO", "kg"),
+    # Agents → organizations (Ch 13–15)
+    E("compound", "FEEDS", "kg"),
+    E("compound", "BUILDS_ON", "specdriven"),
+    E("mas", "USES", "orchestration"),
+    E("mas", "REQUIRES", "memory"),
+    E("mas", "USES", "mcp"),
+    E("claudecode", "IMPLEMENTS", "mas"),
+    E("vo", "CONTAINS", "mas"),
+    E("vo", "REQUIRES", "memory"),
+    E("vo", "USES", "kg"),
+    E("vo", "REQUIRES", "compound"),
 ]
 
 
@@ -318,8 +339,8 @@ def write_svg():
         else:
             out.append(f'<text x="{x}" y="{y+4}" text-anchor="middle" fill="{text}" '
                        f'font-size="10" font-weight="600">{n["label"]}</text>')
-    out.append('<text x="470" y="486" text-anchor="middle" fill="#94a3b8" font-size="11">'
-               'Interactive version with all 40 nodes: knowledge-graph/index.html · '
+    out.append(f'<text x="470" y="486" text-anchor="middle" fill="#94a3b8" font-size="11">'
+               f'Interactive version with all {len(NODES)} nodes: knowledge-graph/index.html · '
                'Neo4j import: knowledge-graph/graph.cypher</text>')
     out.append('</svg>')
     with open(os.path.join(HERE, "..", "assets", "knowledge-graph.svg"), "w") as f:
