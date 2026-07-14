@@ -73,6 +73,24 @@
       "url": "../chapters/12-costs-deployment-future.md"
     },
     {
+      "id": "c13",
+      "label": "Ch 13 \u2014 Compound Engineering",
+      "type": "chapter",
+      "url": "../chapters/13-compound-engineering.md"
+    },
+    {
+      "id": "c14",
+      "label": "Ch 14 \u2014 Multi-Agent Systems",
+      "type": "chapter",
+      "url": "../chapters/14-multi-agent-systems.md"
+    },
+    {
+      "id": "c15",
+      "label": "Ch 15 \u2014 Virtual Organizations",
+      "type": "chapter",
+      "url": "../chapters/15-virtual-organizations.md"
+    },
+    {
       "id": "cA",
       "label": "Appendix \u2014 Tool Directory",
       "type": "chapter",
@@ -229,6 +247,26 @@
       "id": "propgraph",
       "label": "Property Graph",
       "type": "concept"
+    },
+    {
+      "id": "compound",
+      "label": "Compound Engineering",
+      "type": "concept"
+    },
+    {
+      "id": "orchestration",
+      "label": "Agent Orchestration",
+      "type": "concept"
+    },
+    {
+      "id": "mas",
+      "label": "Multi-Agent System",
+      "type": "concept"
+    },
+    {
+      "id": "vo",
+      "label": "Virtual Organization",
+      "type": "concept"
     }
   ],
   "edges": [
@@ -289,6 +327,21 @@
     },
     {
       "source": "c12",
+      "rel": "FOLLOWED_BY",
+      "target": "c13"
+    },
+    {
+      "source": "c13",
+      "rel": "FOLLOWED_BY",
+      "target": "c14"
+    },
+    {
+      "source": "c14",
+      "rel": "FOLLOWED_BY",
+      "target": "c15"
+    },
+    {
+      "source": "c15",
       "rel": "FOLLOWED_BY",
       "target": "cA"
     },
@@ -401,6 +454,26 @@
       "source": "c12",
       "rel": "RECOMMENDS",
       "target": "claudecode"
+    },
+    {
+      "source": "c13",
+      "rel": "COVERS",
+      "target": "compound"
+    },
+    {
+      "source": "c14",
+      "rel": "COVERS",
+      "target": "mas"
+    },
+    {
+      "source": "c14",
+      "rel": "COVERS",
+      "target": "orchestration"
+    },
+    {
+      "source": "c15",
+      "rel": "COVERS",
+      "target": "vo"
     },
     {
       "source": "cA",
@@ -566,6 +639,56 @@
       "source": "sourcegraph",
       "rel": "RELATED_TO",
       "target": "kg"
+    },
+    {
+      "source": "compound",
+      "rel": "FEEDS",
+      "target": "kg"
+    },
+    {
+      "source": "compound",
+      "rel": "BUILDS_ON",
+      "target": "specdriven"
+    },
+    {
+      "source": "mas",
+      "rel": "USES",
+      "target": "orchestration"
+    },
+    {
+      "source": "mas",
+      "rel": "REQUIRES",
+      "target": "memory"
+    },
+    {
+      "source": "mas",
+      "rel": "USES",
+      "target": "mcp"
+    },
+    {
+      "source": "claudecode",
+      "rel": "IMPLEMENTS",
+      "target": "mas"
+    },
+    {
+      "source": "vo",
+      "rel": "CONTAINS",
+      "target": "mas"
+    },
+    {
+      "source": "vo",
+      "rel": "REQUIRES",
+      "target": "memory"
+    },
+    {
+      "source": "vo",
+      "rel": "USES",
+      "target": "kg"
+    },
+    {
+      "source": "vo",
+      "rel": "REQUIRES",
+      "target": "compound"
     }
   ]
 }

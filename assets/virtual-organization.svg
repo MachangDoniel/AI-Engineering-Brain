@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 566" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="960" height="566" rx="12" fill="#0f172a"/>
+  <text x="480" y="34" text-anchor="middle" fill="#e2e8f0" font-size="20" font-weight="700">The Virtual Organization — an AI Company of Agent Teams</text>
+
+  <!-- Human -->
+  <rect x="360" y="50" width="240" height="40" rx="10" fill="#422006" stroke="#f59e0b"/>
+  <text x="480" y="75" text-anchor="middle" fill="#fcd34d" font-size="12.5" font-weight="600">Human — Mission · Budget · Approval</text>
+  <line x1="480" y1="90" x2="480" y2="106" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Executive layer -->
+  <rect x="170" y="108" width="620" height="48" rx="10" fill="#422006" stroke="#f59e0b"/>
+  <text x="480" y="129" text-anchor="middle" fill="#fcd34d" font-size="14" font-weight="700">Executive Layer</text>
+  <text x="480" y="147" text-anchor="middle" fill="#fde68a" font-size="11">CEO · CTO · CPO · CFO Agents — orchestrators of orchestrators</text>
+
+  <!-- Fan-out to departments -->
+  <line x1="480" y1="156" x2="125" y2="190" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="480" y1="156" x2="359" y2="190" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="480" y1="156" x2="593" y2="190" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="480" y1="156" x2="827" y2="190" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <text x="480" y="180" text-anchor="middle" fill="#94a3b8" font-size="12">Departments — each one a Multi-Agent System (MAS)</text>
+
+  <!-- Engineering department -->
+  <rect x="20" y="194" width="210" height="202" rx="10" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="34" y="217" fill="#bfdbfe" font-size="13" font-weight="700">Engineering</text>
+  <text x="216" y="216" text-anchor="end" fill="#93c5fd" font-size="9">MAS</text>
+  <rect x="34" y="230" width="182" height="26" rx="6" fill="#14532d" stroke="#22c55e"/>
+  <text x="125" y="247" text-anchor="middle" fill="#bbf7d0" font-size="11">Architect Agent</text>
+  <rect x="34" y="260" width="182" height="26" rx="6" fill="#14532d" stroke="#22c55e"/>
+  <text x="125" y="277" text-anchor="middle" fill="#bbf7d0" font-size="11">Backend Agent</text>
+  <rect x="34" y="290" width="182" height="26" rx="6" fill="#14532d" stroke="#22c55e"/>
+  <text x="125" y="307" text-anchor="middle" fill="#bbf7d0" font-size="11">Frontend Agent</text>
+  <rect x="34" y="320" width="182" height="26" rx="6" fill="#14532d" stroke="#22c55e"/>
+  <text x="125" y="337" text-anchor="middle" fill="#bbf7d0" font-size="11">Mobile Agent</text>
+  <rect x="34" y="350" width="182" height="26" rx="6" fill="#14532d" stroke="#22c55e"/>
+  <text x="125" y="367" text-anchor="middle" fill="#bbf7d0" font-size="11">QA Agent</text>
+
+  <!-- Product department -->
+  <rect x="254" y="194" width="210" height="202" rx="10" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="268" y="217" fill="#bfdbfe" font-size="13" font-weight="700">Product</text>
+  <text x="450" y="216" text-anchor="end" fill="#93c5fd" font-size="9">MAS</text>
+  <rect x="268" y="230" width="182" height="26" rx="6" fill="#14532d" stroke="#22c55e"/>
+  <text x="359" y="247" text-anchor="middle" fill="#bbf7d0" font-size="11">Product Manager Agent</text>
+  <rect x="268" y="260" width="182" height="26" rx="6" fill="#14532d" stroke="#22c55e"/>
+  <text x="359" y="277" text-anchor="middle" fill="#bbf7d0" font-size="11">Business Analyst Agent</text>
+  <rect x="268" y="290" width="182" height="26" rx="6" fill="#14532d" stroke="#22c55e"/>
+  <text x="359" y="307" text-anchor="middle" fill="#bbf7d0" font-size="11">UX Researcher Agent</text>
+
+  <!-- Marketing department -->
+  <rect x="488" y="194" width="210" height="202" rx="10" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="502" y="217" fill="#bfdbfe" font-size="13" font-weight="700">Marketing</text>
+  <text x="684" y="216" text-anchor="end" fill="#93c5fd" font-size="9">MAS</text>
+  <rect x="502" y="230" width="182" height="26" rx="6" fill="#14532d" stroke="#22c55e"/>
+  <text x="593" y="247" text-anchor="middle" fill="#bbf7d0" font-size="11">SEO Agent</text>
+  <rect x="502" y="260" width="182" height="26" rx="6" fill="#14532d" stroke="#22c55e"/>
+  <text x="593" y="277" text-anchor="middle" fill="#bbf7d0" font-size="11">Content Agent</text>
+  <rect x="502" y="290" width="182" height="26" rx="6" fill="#14532d" stroke="#22c55e"/>
+  <text x="593" y="307" text-anchor="middle" fill="#bbf7d0" font-size="11">Social Media Agent</text>
+
+  <!-- Finance department -->
+  <rect x="722" y="194" width="210" height="202" rx="10" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="736" y="217" fill="#bfdbfe" font-size="13" font-weight="700">Finance</text>
+  <text x="918" y="216" text-anchor="end" fill="#93c5fd" font-size="9">MAS</text>
+  <rect x="736" y="230" width="182" height="26" rx="6" fill="#14532d" stroke="#22c55e"/>
+  <text x="827" y="247" text-anchor="middle" fill="#bbf7d0" font-size="11">Accountant Agent</text>
+  <rect x="736" y="260" width="182" height="26" rx="6" fill="#14532d" stroke="#22c55e"/>
+  <text x="827" y="277" text-anchor="middle" fill="#bbf7d0" font-size="11">Budget Analyst Agent</text>
+
+  <!-- Departments <-> shared brain (read/write) -->
+  <line x1="125" y1="396" x2="125" y2="430" stroke="#64748b" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <line x1="359" y1="396" x2="359" y2="430" stroke="#64748b" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <line x1="593" y1="396" x2="593" y2="430" stroke="#64748b" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <line x1="827" y1="396" x2="827" y2="430" stroke="#64748b" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+
+  <!-- Shared organizational brain -->
+  <rect x="20" y="430" width="912" height="66" rx="10" fill="#4a1d6e" stroke="#a855f7"/>
+  <text x="476" y="457" text-anchor="middle" fill="#e9d5ff" font-size="15" font-weight="700">Shared Organizational Brain</text>
+  <text x="476" y="479" text-anchor="middle" fill="#d8b4fe" font-size="11">Policy · Budget · Long-Lived Memory · Knowledge Graph (Ch 5–8) · MCP (Ch 11)</text>
+
+  <!-- Legend -->
+  <rect x="150" y="524" width="13" height="13" rx="3" fill="#422006" stroke="#f59e0b"/>
+  <text x="169" y="535" fill="#94a3b8" font-size="11">Human / Executive</text>
+  <rect x="300" y="524" width="13" height="13" rx="3" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="319" y="535" fill="#94a3b8" font-size="11">Department = one MAS</text>
+  <rect x="490" y="524" width="13" height="13" rx="3" fill="#14532d" stroke="#22c55e"/>
+  <text x="509" y="535" fill="#94a3b8" font-size="11">Agent</text>
+  <rect x="580" y="524" width="13" height="13" rx="3" fill="#4a1d6e" stroke="#a855f7"/>
+  <text x="599" y="535" fill="#94a3b8" font-size="11">Shared brain (what makes it a VO, not four MASs)</text>
+</svg>

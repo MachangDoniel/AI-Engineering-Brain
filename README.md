@@ -49,6 +49,13 @@ Modern AI coding assistants are powerful, but they mostly see your code as *text
 | 11 | [MCP & AI Coding Agents](chapters/11-mcp-and-ai-agents.md) | Connecting the brain to Claude Code, Codex, Cursor, Gemini CLI, and more |
 | 12 | [Costs, Deployment & the Road Ahead](chapters/12-costs-deployment-future.md) | Budgets, self-hosted vs SaaS, startup ideas, the 2027–2030 outlook |
 | 13 | [Compound Engineering](chapters/13-compound-engineering.md) | The Plan/Work/Review/Compound loop, CLAUDE.md, solution docs, and how they feed the knowledge graph |
+
+### Part IV — Organization
+
+| # | Chapter | What you'll learn |
+|---|---------|-------------------|
+| 14 | [Multi-Agent Systems](chapters/14-multi-agent-systems.md) | Why single agents break, the monolith→microservices analogy, orchestration patterns, and when *not* to use a MAS |
+| 15 | [Virtual Organizations](chapters/15-virtual-organizations.md) | From agent teams to AI companies: departments, governance, org-wide memory, and when *not* to build a VO |
 | A | [Appendix: Tool Directory](appendix/tool-directory.md) | Reference catalog of 10+ tools with verified links and use cases |
 
 > **New here?** Start with [Chapter 1](chapters/01-executive-summary.md) and follow the *Next* links at the bottom of each chapter.
@@ -57,7 +64,7 @@ Modern AI coding assistants are powerful, but they mostly see your code as *text
 
 ## 🕸️ Project Knowledge Graph
 
-This library practices what it preaches: the whole book — chapters, tools, and concepts — is modeled as a knowledge graph (40 nodes, 67 relationships).
+This library practices what it preaches: the whole book — chapters, tools, and concepts — is modeled as a knowledge graph (47 nodes, 84 relationships).
 
 <p align="center">
   <img src="assets/knowledge-graph.svg" alt="Project knowledge graph: concepts, stack, and agents" width="720">
