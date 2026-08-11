@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 860" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<rect width="1240" height="860" rx="12" fill="#0f172a"/>
+<text x="28" y="36" fill="#e2e8f0" font-size="18" font-weight="700">🧠 The AI Engineering Brain — Knowledge Graph</text>
+<text x="28" y="55" fill="#94a3b8" font-size="12">55 nodes · 112 relationships · interactive version: knowledge-graph/index.html</text>
+<line x1="824.2" y1="426.4" x2="756.6" y2="363.0" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="756.6" y1="363.0" x2="638.3" y2="305.7" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="638.3" y1="305.7" x2="614.9" y2="459.4" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="614.9" y1="459.4" x2="756.9" y2="459.5" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="756.9" y1="459.5" x2="835.0" y2="601.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="835.0" y1="601.3" x2="709.2" y2="689.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="709.2" y1="689.3" x2="545.1" y2="726.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="545.1" y1="726.9" x2="672.4" y2="775.0" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="672.4" y1="775.0" x2="576.5" y2="680.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="576.5" y1="680.9" x2="627.0" y2="592.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="627.0" y1="592.2" x2="488.5" y2="566.5" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="488.5" y1="566.5" x2="344.1" y2="512.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="344.1" y1="512.9" x2="292.5" y2="414.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="292.5" y1="414.9" x2="334.8" y2="306.0" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="334.8" y1="306.0" x2="405.2" y2="204.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="405.2" y1="204.9" x2="533.7" y2="189.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="533.7" y1="189.2" x2="688.5" y2="263.4" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="688.5" y1="263.4" x2="829.9" y2="361.4" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="824.2" y1="426.4" x2="639.1" y2="400.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="756.6" y1="363.0" x2="699.9" y2="475.6" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="756.6" y1="363.0" x2="797.6" y2="501.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="638.3" y1="305.7" x2="507.9" y2="248.7" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="638.3" y1="305.7" x2="593.6" y2="363.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="638.3" y1="305.7" x2="476.3" y2="315.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="614.9" y1="459.4" x2="699.9" y2="475.6" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="614.9" y1="459.4" x2="573.6" y2="589.5" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="756.9" y1="459.5" x2="639.1" y2="400.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="756.9" y1="459.5" x2="686.9" y2="378.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="835.0" y1="601.3" x2="797.6" y2="501.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="709.2" y1="689.3" x2="644.4" y2="532.5" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="545.1" y1="726.9" x2="445.8" y2="642.4" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="545.1" y1="726.9" x2="444.6" y2="537.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="672.4" y1="775.0" x2="772.0" y2="659.8" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="672.4" y1="775.0" x2="796.9" y2="773.7" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="576.5" y1="680.9" x2="561.7" y2="525.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="576.5" y1="680.9" x2="476.2" y2="729.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="627.0" y1="592.2" x2="520.2" y2="617.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="627.0" y1="592.2" x2="525.3" y2="480.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="488.5" y1="566.5" x2="644.4" y2="532.5" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="488.5" y1="566.5" x2="525.3" y2="480.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="344.1" y1="512.9" x2="424.3" y2="397.8" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="292.5" y1="414.9" x2="415.3" y2="456.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="292.5" y1="414.9" x2="391.1" y2="336.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="334.8" y1="306.0" x2="486.4" y2="407.4" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="405.2" y1="204.9" x2="476.3" y2="315.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="533.7" y1="189.2" x2="543.2" y2="326.6" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="533.7" y1="189.2" x2="593.3" y2="135.0" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="533.7" y1="189.2" x2="649.3" y2="189.0" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="688.5" y1="263.4" x2="546.3" y2="394.5" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="688.5" y1="263.4" x2="592.3" y2="267.0" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="829.9" y1="361.4" x2="761.6" y2="275.8" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="829.9" y1="361.4" x2="874.0" y2="495.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="829.9" y1="361.4" x2="839.5" y2="220.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="829.9" y1="361.4" x2="923.7" y2="292.8" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="829.9" y1="361.4" x2="947.5" y2="417.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="829.9" y1="361.4" x2="726.5" y2="544.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="644.4" y1="532.5" x2="772.0" y2="659.8" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="644.4" y1="532.5" x2="639.1" y2="400.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="644.4" y1="532.5" x2="561.7" y2="525.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="445.8" y1="642.4" x2="561.7" y2="525.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="445.8" y1="642.4" x2="444.6" y2="537.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="772.0" y1="659.8" x2="796.9" y2="773.7" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="561.7" y1="525.3" x2="686.9" y2="378.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="476.2" y1="729.1" x2="573.6" y2="589.5" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="699.9" y1="475.6" x2="573.6" y2="589.5" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="593.6" y1="363.2" x2="507.9" y2="248.7" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="699.9" y1="475.6" x2="593.6" y2="363.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="476.3" y1="315.2" x2="593.6" y2="363.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="797.6" y1="501.2" x2="699.9" y2="475.6" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="797.6" y1="501.2" x2="639.1" y2="400.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="520.2" y1="617.3" x2="561.7" y2="525.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="520.2" y1="617.3" x2="476.2" y2="729.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="525.3" y1="480.1" x2="520.2" y2="617.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="690.5" y1="622.9" x2="520.2" y2="617.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="637.9" y1="686.2" x2="520.2" y2="617.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="355.6" y1="614.3" x2="520.2" y2="617.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="726.5" y1="544.1" x2="520.2" y2="617.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="386.1" y1="709.4" x2="520.2" y2="617.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="644.4" y1="532.5" x2="525.3" y2="480.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="644.4" y1="532.5" x2="637.9" y2="686.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="644.4" y1="532.5" x2="690.5" y2="622.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="874.0" y1="495.3" x2="699.9" y2="475.6" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="761.6" y1="275.8" x2="639.1" y2="400.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="424.3" y1="397.8" x2="639.1" y2="400.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="424.3" y1="397.8" x2="476.3" y2="315.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="415.3" y1="456.2" x2="391.1" y2="336.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="415.3" y1="456.2" x2="444.6" y2="537.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="415.3" y1="456.2" x2="520.2" y2="617.3" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="525.3" y1="480.1" x2="415.3" y2="456.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="486.4" y1="407.4" x2="415.3" y2="456.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="486.4" y1="407.4" x2="444.6" y2="537.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="486.4" y1="407.4" x2="639.1" y2="400.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="486.4" y1="407.4" x2="424.3" y2="397.8" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="476.3" y1="315.2" x2="424.3" y2="397.8" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="476.3" y1="315.2" x2="415.3" y2="456.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="476.3" y1="315.2" x2="639.1" y2="400.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="593.3" y1="135.0" x2="543.2" y2="326.6" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="649.3" y1="189.0" x2="543.2" y2="326.6" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="415.3" y1="456.2" x2="543.2" y2="326.6" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="486.4" y1="407.4" x2="543.2" y2="326.6" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="424.3" y1="397.8" x2="543.2" y2="326.6" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="543.2" y1="326.6" x2="391.1" y2="336.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="543.2" y1="326.6" x2="525.3" y2="480.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="543.2" y1="326.6" x2="476.3" y2="315.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="644.4" y1="532.5" x2="543.2" y2="326.6" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="546.3" y1="394.5" x2="592.3" y2="267.0" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="546.3" y1="394.5" x2="424.3" y2="397.8" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="546.3" y1="394.5" x2="476.3" y2="315.2" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="546.3" y1="394.5" x2="444.6" y2="537.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="592.3" y1="267.0" x2="639.1" y2="400.9" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="592.3" y1="267.0" x2="686.9" y2="378.1" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<line x1="525.3" y1="480.1" x2="546.3" y2="394.5" stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>
+<circle cx="520.2" cy="617.3" r="18.0" fill="#4ade80"/>
+<text x="520.2" y="593.3" text-anchor="middle" fill="#e2e8f0" font-size="10.5">MCP</text>
+<circle cx="543.2" cy="326.6" r="18.0" fill="#c084fc"/>
+<text x="543.2" y="302.6" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Git Worktree</text>
+<circle cx="644.4" cy="532.5" r="18.0" fill="#4ade80"/>
+<text x="644.4" y="508.5" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Graphify</text>
+<circle cx="639.1" cy="400.9" r="18.0" fill="#c084fc"/>
+<text x="639.1" y="376.9" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Knowledge Graph</text>
+<circle cx="476.3" cy="315.2" r="18.0" fill="#c084fc"/>
+<text x="476.3" y="346.2" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Spec-Driven Dev</text>
+<circle cx="415.3" cy="456.2" r="17.4" fill="#c084fc"/>
+<text x="415.3" y="432.8" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Multi-Agent System</text>
+<circle cx="829.9" cy="361.4" r="16.1" fill="#60a5fa"/>
+<text x="829.9" y="339.3" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Appendix — Tool Directory</text>
+<circle cx="525.3" cy="480.1" r="16.1" fill="#4ade80"/>
+<text x="525.3" y="458.0" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Claude Code</text>
+<circle cx="424.3" cy="397.8" r="16.1" fill="#c084fc"/>
+<text x="424.3" y="375.7" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Compound Engineering</text>
+<circle cx="699.9" cy="475.6" r="14.8" fill="#c084fc"/>
+<text x="699.9" y="454.8" text-anchor="middle" fill="#e2e8f0" font-size="10.5">RAG</text>
+<circle cx="486.4" cy="407.4" r="14.8" fill="#c084fc"/>
+<text x="506.2" y="410.4" text-anchor="start" fill="#e2e8f0" font-size="10.5">Virtual Organization</text>
+<circle cx="546.3" cy="394.5" r="14.8" fill="#c084fc"/>
+<text x="546.3" y="373.7" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Sprint Tracking</text>
+<circle cx="638.3" cy="305.7" r="13.5" fill="#60a5fa"/>
+<text x="638.3" y="286.2" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 3 — Prompt → Knowledge</text>
+<circle cx="533.7" cy="189.2" r="13.5" fill="#60a5fa"/>
+<text x="533.7" y="169.7" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 17 — Git Worktrees</text>
+<circle cx="561.7" cy="525.3" r="13.5" fill="#4ade80"/>
+<text x="561.7" y="505.8" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Neo4j</text>
+<circle cx="444.6" cy="537.1" r="13.5" fill="#c084fc"/>
+<text x="444.6" y="517.6" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Agent Memory</text>
+<circle cx="756.6" cy="363.0" r="12.2" fill="#60a5fa"/>
+<text x="756.6" y="388.2" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 2 — Evolution</text>
+<circle cx="614.9" cy="459.4" r="12.2" fill="#60a5fa"/>
+<text x="614.9" y="441.2" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 4 — Why RAG Isn't Enough</text>
+<circle cx="756.9" cy="459.5" r="12.2" fill="#60a5fa"/>
+<text x="756.9" y="441.3" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 5 — Knowledge Graphs</text>
+<circle cx="545.1" cy="726.9" r="12.2" fill="#60a5fa"/>
+<text x="545.1" y="708.7" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 8 — Graphiti</text>
+<circle cx="672.4" cy="775.0" r="12.2" fill="#60a5fa"/>
+<text x="672.4" y="756.8" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 9 — Tree-sitter</text>
+<circle cx="576.5" cy="680.9" r="12.2" fill="#60a5fa"/>
+<text x="576.5" y="662.7" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 10 — Neo4j &amp; Qdrant</text>
+<circle cx="627.0" cy="592.2" r="12.2" fill="#60a5fa"/>
+<text x="627.0" y="574.0" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 11 — MCP &amp; Agents</text>
+<circle cx="488.5" cy="566.5" r="12.2" fill="#60a5fa"/>
+<text x="488.5" y="548.3" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 12 — Production</text>
+<circle cx="292.5" cy="414.9" r="12.2" fill="#60a5fa"/>
+<text x="292.5" y="396.7" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 14 — Multi-Agent Systems</text>
+<circle cx="688.5" cy="263.4" r="12.2" fill="#60a5fa"/>
+<text x="688.5" y="245.2" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 18 — Sprint Tracking</text>
+<circle cx="593.6" cy="363.2" r="12.2" fill="#c084fc"/>
+<text x="593.6" y="345.0" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Context Engineering</text>
+<circle cx="797.6" cy="501.2" r="12.2" fill="#c084fc"/>
+<text x="797.6" y="483.0" text-anchor="middle" fill="#e2e8f0" font-size="10.5">GraphRAG</text>
+<circle cx="592.3" cy="267.0" r="12.2" fill="#c084fc"/>
+<text x="609.5" y="270.0" text-anchor="start" fill="#e2e8f0" font-size="10.5">Decision Record</text>
+<circle cx="835.0" cy="601.3" r="10.9" fill="#60a5fa"/>
+<text x="835.0" y="584.4" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 6 — GraphRAG</text>
+<circle cx="709.2" cy="689.3" r="10.9" fill="#60a5fa"/>
+<text x="709.2" y="672.4" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 7 — Graphify</text>
+<circle cx="344.1" cy="512.9" r="10.9" fill="#60a5fa"/>
+<text x="344.1" y="496.0" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 13 — Compound Engineering</text>
+<circle cx="334.8" cy="306.0" r="10.9" fill="#60a5fa"/>
+<text x="334.8" y="289.1" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 15 — Virtual Organizations</text>
+<circle cx="405.2" cy="204.9" r="10.9" fill="#60a5fa"/>
+<text x="405.2" y="188.0" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 16 — Spec-Driven Development</text>
+<circle cx="445.8" cy="642.4" r="10.9" fill="#4ade80"/>
+<text x="445.8" y="625.5" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Graphiti</text>
+<circle cx="476.2" cy="729.1" r="10.9" fill="#4ade80"/>
+<text x="476.2" y="712.2" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Qdrant</text>
+<circle cx="772.0" cy="659.8" r="10.9" fill="#4ade80"/>
+<text x="772.0" y="642.9" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Tree-sitter</text>
+<circle cx="573.6" cy="589.5" r="10.9" fill="#c084fc"/>
+<text x="573.6" y="613.4" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Embeddings</text>
+<circle cx="686.9" cy="378.1" r="10.9" fill="#c084fc"/>
+<text x="686.9" y="361.2" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Property Graph</text>
+<circle cx="391.1" cy="336.9" r="10.9" fill="#c084fc"/>
+<text x="391.1" y="320.0" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Agent Orchestration</text>
+<circle cx="824.2" cy="426.4" r="9.6" fill="#60a5fa"/>
+<text x="824.2" y="410.8" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Ch 1 — Executive Summary</text>
+<circle cx="690.5" cy="622.9" r="9.6" fill="#4ade80"/>
+<text x="690.5" y="607.3" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Codex</text>
+<circle cx="637.9" cy="686.2" r="9.6" fill="#4ade80"/>
+<text x="637.9" y="708.8" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Cursor</text>
+<circle cx="726.5" cy="544.1" r="9.6" fill="#4ade80"/>
+<text x="726.5" y="528.5" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Continue</text>
+<circle cx="761.6" cy="275.8" r="9.6" fill="#4ade80"/>
+<text x="761.6" y="260.2" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Sourcegraph</text>
+<circle cx="874.0" cy="495.3" r="9.6" fill="#4ade80"/>
+<text x="874.0" y="479.7" text-anchor="middle" fill="#e2e8f0" font-size="10.5">LlamaIndex</text>
+<circle cx="593.3" cy="135.0" r="9.6" fill="#4ade80"/>
+<text x="593.3" y="119.4" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Git</text>
+<circle cx="649.3" cy="189.0" r="9.6" fill="#4ade80"/>
+<text x="649.3" y="173.4" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Fork</text>
+<circle cx="507.9" cy="248.7" r="9.6" fill="#c084fc"/>
+<text x="507.9" y="233.1" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Prompt Engineering</text>
+<circle cx="796.9" cy="773.7" r="9.6" fill="#c084fc"/>
+<text x="796.9" y="758.1" text-anchor="middle" fill="#e2e8f0" font-size="10.5">AST</text>
+<circle cx="355.6" cy="614.3" r="8.3" fill="#4ade80"/>
+<text x="355.6" y="600.0" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Gemini CLI</text>
+<circle cx="386.1" cy="709.4" r="8.3" fill="#4ade80"/>
+<text x="386.1" y="695.1" text-anchor="middle" fill="#e2e8f0" font-size="10.5">OpenCode</text>
+<circle cx="839.5" cy="220.1" r="8.3" fill="#4ade80"/>
+<text x="839.5" y="205.8" text-anchor="middle" fill="#e2e8f0" font-size="10.5">DeepWiki</text>
+<circle cx="923.7" cy="292.8" r="8.3" fill="#4ade80"/>
+<text x="923.7" y="278.5" text-anchor="middle" fill="#e2e8f0" font-size="10.5">Gitingest</text>
+<circle cx="947.5" cy="417.9" r="8.3" fill="#4ade80"/>
+<text x="947.5" y="403.6" text-anchor="middle" fill="#e2e8f0" font-size="10.5">LangGraph</text>
+<circle cx="28" cy="834" r="6" fill="#60a5fa"/>
+<text x="41" y="838" fill="#94a3b8" font-size="12">Chapter</text>
+<circle cx="128" cy="834" r="6" fill="#4ade80"/>
+<text x="141" y="838" fill="#94a3b8" font-size="12">Tool</text>
+<circle cx="228" cy="834" r="6" fill="#c084fc"/>
+<text x="241" y="838" fill="#94a3b8" font-size="12">Concept</text>
+</svg>

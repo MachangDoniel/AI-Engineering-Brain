@@ -36,6 +36,9 @@ NODES = [
     {"id": "c13", "label": "Ch 13 — Compound Engineering",    "type": CH, "url": "../chapters/13-compound-engineering.md"},
     {"id": "c14", "label": "Ch 14 — Multi-Agent Systems",     "type": CH, "url": "../chapters/14-multi-agent-systems.md"},
     {"id": "c15", "label": "Ch 15 — Virtual Organizations",   "type": CH, "url": "../chapters/15-virtual-organizations.md"},
+    {"id": "c16", "label": "Ch 16 — Spec-Driven Development",  "type": CH, "url": "../chapters/16-spec-driven-development.md"},
+    {"id": "c17", "label": "Ch 17 — Git Worktrees",           "type": CH, "url": "../chapters/17-git-worktrees.md"},
+    {"id": "c18", "label": "Ch 18 — Sprint Tracking",         "type": CH, "url": "../chapters/18-sprint-tracking.md"},
     {"id": "cA",  "label": "Appendix — Tool Directory",       "type": CH, "url": "../appendix/tool-directory.md"},
     # Tools
     {"id": "graphify",   "label": "Graphify",    "type": TOOL, "url": "https://github.com/safishamsi/graphify"},
@@ -55,6 +58,8 @@ NODES = [
     {"id": "deepwiki",   "label": "DeepWiki",    "type": TOOL, "url": "https://deepwiki.com"},
     {"id": "gitingest",  "label": "Gitingest",   "type": TOOL, "url": "https://gitingest.com"},
     {"id": "langgraph",  "label": "LangGraph",   "type": TOOL, "url": "https://github.com/langchain-ai/langgraph"},
+    {"id": "git",        "label": "Git",         "type": TOOL, "url": "https://git-scm.com/docs/git-worktree"},
+    {"id": "fork",       "label": "Fork",        "type": TOOL, "url": "https://git-fork.com"},
     # Concepts
     {"id": "prompteng",  "label": "Prompt Engineering",  "type": CONCEPT},
     {"id": "contexteng", "label": "Context Engineering", "type": CONCEPT},
@@ -70,13 +75,19 @@ NODES = [
     {"id": "orchestration", "label": "Agent Orchestration", "type": CONCEPT},
     {"id": "mas",        "label": "Multi-Agent System",  "type": CONCEPT},
     {"id": "vo",         "label": "Virtual Organization","type": CONCEPT},
+    {"id": "worktree",   "label": "Git Worktree",        "type": CONCEPT},
+    {"id": "sprinttrack","label": "Sprint Tracking",     "type": CONCEPT},
+    {"id": "adr",        "label": "Decision Record",     "type": CONCEPT},
 ]
+
+# Reading order is derived from the chapter nodes above, in listed order — add a
+# chapter to NODES and its FOLLOWED_BY links come with it.
+CHAPTER_ORDER = [n["id"] for n in NODES if n["type"] == CH]
 
 E = lambda s, r, t: {"source": s, "rel": r, "target": t}
 EDGES = [
-    # Reading order
-    *[E(f"c{i}", "FOLLOWED_BY", f"c{i+1}") for i in range(1, 15)],
-    E("c15", "FOLLOWED_BY", "cA"),
+    # Reading order (derived from CHAPTER_ORDER)
+    *[E(a, "FOLLOWED_BY", b) for a, b in zip(CHAPTER_ORDER, CHAPTER_ORDER[1:])],
     # Chapter -> topic coverage
     E("c1", "COVERS", "kg"),
     E("c2", "COVERS", "rag"), E("c2", "COVERS", "graphrag"),
@@ -93,6 +104,9 @@ EDGES = [
     E("c13", "COVERS", "compound"),
     E("c14", "COVERS", "mas"), E("c14", "COVERS", "orchestration"),
     E("c15", "COVERS", "vo"),
+    E("c16", "COVERS", "specdriven"),
+    E("c17", "COVERS", "worktree"), E("c17", "COVERS", "git"), E("c17", "RECOMMENDS", "fork"),
+    E("c18", "COVERS", "sprinttrack"), E("c18", "COVERS", "adr"),
     E("cA", "CATALOGS", "sourcegraph"), E("cA", "CATALOGS", "llamaindex"),
     E("cA", "CATALOGS", "deepwiki"), E("cA", "CATALOGS", "gitingest"),
     E("cA", "CATALOGS", "langgraph"), E("cA", "CATALOGS", "continue"),
@@ -135,6 +149,27 @@ EDGES = [
     E("vo", "REQUIRES", "memory"),
     E("vo", "USES", "kg"),
     E("vo", "REQUIRES", "compound"),
+    E("specdriven", "FEEDS", "compound"),
+    E("specdriven", "CONTRACTS", "mas"),
+    E("specdriven", "MODELED_IN", "kg"),
+    # Worktrees → the physical substrate of parallel agents (Ch 17)
+    E("git", "PROVIDES", "worktree"),
+    E("fork", "SUPPORTS", "worktree"),
+    E("mas", "REQUIRES", "worktree"),
+    E("vo", "USES", "worktree"),
+    E("compound", "USES", "worktree"),
+    E("worktree", "COMPLEMENTS", "orchestration"),
+    E("worktree", "ISOLATES", "claudecode"),
+    E("worktree", "VERIFIES", "specdriven"),
+    E("graphify", "INDEXES", "worktree"),
+    # Sprint tracking → the engineering record (Ch 18)
+    E("sprinttrack", "PRODUCES", "adr"),
+    E("sprinttrack", "IMPLEMENTS", "compound"),
+    E("sprinttrack", "COMPLEMENTS", "specdriven"),
+    E("sprinttrack", "ENABLES", "memory"),
+    E("adr", "FEEDS", "kg"),
+    E("adr", "MODELED_IN", "propgraph"),
+    E("claudecode", "MAINTAINS", "sprinttrack"),
 ]
 
 
@@ -169,6 +204,20 @@ def write_cypher():
         "// MATCH (c:Chapter)-[:COVERS]->(t:Tool) RETURN c.name, t.name;",
         "// What does Graphify connect to?",
         "// MATCH (g:Tool {name:'Graphify'})-[r]-(x) RETURN g.name, type(r), x.name;",
+        "",
+        "// --- Ch 18: the engineering record ---",
+        "// What does Sprint Tracking connect to?",
+        "// MATCH (s:Concept {name:'Sprint Tracking'})-[r]-(x) RETURN type(r), x.name;",
+        "// Which chapter should I read to learn about decision records?",
+        "// MATCH (c:Chapter)-[:COVERS]->(:Concept {name:'Decision Record'}) RETURN c.name, c.url;",
+        "// The Ch 18 thesis as a path: how does a decision reach the knowledge graph?",
+        "// MATCH p = (:Concept {name:'Sprint Tracking'})-[:PRODUCES]->()-[:FEEDS]->(:Concept {name:'Knowledge Graph'})",
+        "// RETURN [n IN nodes(p) | n.name] AS path;",
+        "// Which practices feed Compound Engineering, and how? (Ch 13 ← 16, 18)",
+        "// MATCH (x)-[r:IMPLEMENTS|BUILDS_ON|FEEDS]->(:Concept {name:'Compound Engineering'})",
+        "// RETURN x.name, type(r);",
+        "// Everything an agent is expected to maintain",
+        "// MATCH (t:Tool)-[:MAINTAINS]->(x) RETURN t.name, x.name;",
     ]
     with open(os.path.join(HERE, "graph.cypher"), "w") as f:
         f.write("\n".join(lines) + "\n")
@@ -300,8 +349,16 @@ canvas.onclick = e => { const n = pick(e.clientX, e.clientY);
 
 
 def write_svg():
-    # Curated static overview: the stack topology (chapters omitted for clarity).
+    # Curated static overview: the stack topology plus the Part IV–V cluster
+    # (chapters omitted for clarity). Node positions are hand-placed; edges are
+    # routed around them automatically by `route()` below, so adding a node here
+    # cannot silently draw a line through another one.
+    import math
+
+    W, H, R = 940, 800, 30
+    BAND = 490  # divider between Part I–III (above) and Part IV–V (below)
     pos = {
+        # ── Part I–III — concepts, stack, agents ──────────────────────────
         "prompteng": (100, 80), "contexteng": (255, 80), "rag": (400, 80),
         "graphrag": (545, 80), "kg": (700, 80), "memory": (845, 80),
         "treesitter": (140, 215), "ast": (60, 300), "graphify": (330, 215),
@@ -310,21 +367,108 @@ def write_svg():
         "mcp": (470, 330),
         "claudecode": (150, 430), "codex": (310, 430), "cursor": (470, 430),
         "geminicli": (630, 430), "continue": (790, 430),
+        # ── Part IV–V — organization & practice (Ch 13–18) ────────────────
+        "git": (75, 560), "fork": (75, 690), "worktree": (235, 625),
+        "specdriven": (405, 545), "compound": (575, 545), "sprinttrack": (748, 545),
+        "adr": (880, 645),
+        "orchestration": (405, 705), "mas": (575, 705), "vo": (748, 705),
     }
     color = {CH: ("#1e3a5f", "#60a5fa", "#bfdbfe"), TOOL: ("#14532d", "#22c55e", "#bbf7d0"),
              CONCEPT: ("#4a1d6e", "#a855f7", "#e9d5ff")}
     show_edges = [(e["source"], e["target"]) for e in EDGES
                   if e["source"] in pos and e["target"] in pos]
     node_by_id = {n["id"]: n for n in NODES}
-    out = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 500" '
+
+    def _line_pts(p0, p1, n=56):
+        return [(p0[0] + (p1[0] - p0[0]) * i / n, p0[1] + (p1[1] - p0[1]) * i / n)
+                for i in range(n + 1)]
+
+    def _quad_pts(p0, c, p1, n=72):
+        pts = []
+        for i in range(n + 1):
+            t = i / n
+            u = 1 - t
+            pts.append((u * u * p0[0] + 2 * u * t * c[0] + t * t * p1[0],
+                        u * u * p0[1] + 2 * u * t * c[1] + t * t * p1[1]))
+        return pts
+
+    def _cubic_pts(p0, c1, c2, p1, n=72):
+        pts = []
+        for i in range(n + 1):
+            t = i / n
+            u = 1 - t
+            pts.append((u**3 * p0[0] + 3*u*u*t * c1[0] + 3*u*t*t * c2[0] + t**3 * p1[0],
+                        u**3 * p0[1] + 3*u*u*t * c1[1] + 3*u*t*t * c2[1] + t**3 * p1[1]))
+        return pts
+
+    def _clears(pts, skip, gap=R + 7):
+        for nid, (x, y) in pos.items():
+            if nid in skip:
+                continue
+            for px, py in pts:
+                if (px - x) ** 2 + (py - y) ** 2 < gap * gap:
+                    return False
+        return all(8 < px < W - 8 and 8 < py < H - 8 for px, py in pts)
+
+    STROKE = 'fill="none" stroke="#334155" stroke-width="1.4"'
+
+    def route(a, b):
+        """Draw an edge that touches no other node.
+
+        Tries, in order: a straight line; the shallowest single-bow arc; then an
+        S-curve, for the few long-haul edges that must thread the dense middle
+        band. Falls back to a faint straight line only if nothing clears, so a
+        future node addition degrades visibly rather than silently.
+        """
+        p0, p1 = pos[a], pos[b]
+        skip = {a, b}
+        if _clears(_line_pts(p0, p1), skip):
+            return (f'<line x1="{p0[0]}" y1="{p0[1]}" x2="{p1[0]}" y2="{p1[1]}" '
+                    'stroke="#334155" stroke-width="1.4"/>')
+
+        mx, my = (p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2
+        dx, dy = p1[0] - p0[0], p1[1] - p0[1]
+        length = math.hypot(dx, dy) or 1.0
+        nx, ny = -dy / length, dx / length
+
+        for off in (45, 75, 110, 150, 195, 245, 300, 360):
+            for side in (1, -1):
+                c = (mx + nx * off * side, my + ny * off * side)
+                if _clears(_quad_pts(p0, c, p1), skip):
+                    return (f'<path d="M {p0[0]} {p0[1]} Q {round(c[0], 1)} '
+                            f'{round(c[1], 1)} {p1[0]} {p1[1]}" {STROKE}/>')
+
+        grid = (0, 60, 110, 160, 220, 290, 360, -60, -110, -160, -220, -290, -360)
+        best = None
+        for o1 in grid:
+            for o2 in grid:
+                c1 = (p0[0] + dx / 3 + nx * o1, p0[1] + dy / 3 + ny * o1)
+                c2 = (p0[0] + 2 * dx / 3 + nx * o2, p0[1] + 2 * dy / 3 + ny * o2)
+                if _clears(_cubic_pts(p0, c1, c2, p1), skip):
+                    cost = abs(o1) + abs(o2)
+                    if best is None or cost < best[0]:
+                        best = (cost, c1, c2)
+        if best:
+            _, c1, c2 = best
+            return (f'<path d="M {p0[0]} {p0[1]} C {round(c1[0], 1)} {round(c1[1], 1)} '
+                    f'{round(c2[0], 1)} {round(c2[1], 1)} {p1[0]} {p1[1]}" {STROKE}/>')
+
+        return (f'<line x1="{p0[0]}" y1="{p0[1]}" x2="{p1[0]}" y2="{p1[1]}" '
+                'stroke="#334155" stroke-width="1.4" stroke-opacity="0.45"/>')
+
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
            'font-family="Segoe UI, Helvetica, Arial, sans-serif">',
-           '<rect x="0" y="0" width="940" height="500" rx="12" fill="#0f172a"/>',
-           '<text x="470" y="34" text-anchor="middle" fill="#e2e8f0" font-size="18" '
-           'font-weight="700">Project Knowledge Graph — Concepts, Stack &amp; Agents</text>']
+           f'<rect x="0" y="0" width="{W}" height="{H}" rx="12" fill="#0f172a"/>',
+           f'<text x="{W // 2}" y="34" text-anchor="middle" fill="#e2e8f0" font-size="18" '
+           'font-weight="700">Project Knowledge Graph — Concepts, Stack, Agents '
+           '&amp; Practice</text>',
+           # Band divider for the Part IV–V cluster
+           f'<line x1="322" y1="{BAND - 5}" x2="900" y2="{BAND - 5}" stroke="#2b3a52" '
+           'stroke-width="1" stroke-dasharray="4 5"/>',
+           f'<text x="44" y="{BAND}" fill="#64748b" font-size="10.5" font-weight="600" '
+           'letter-spacing="1.4">PART IV–V — ORGANIZATION &amp; PRACTICE</text>']
     for s, t in show_edges:
-        (x1, y1), (x2, y2) = pos[s], pos[t]
-        out.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" '
-                   'stroke="#334155" stroke-width="1.4"/>')
+        out.append(route(s, t))
     for nid, (x, y) in pos.items():
         n = node_by_id[nid]
         fill, stroke, text = color[n["type"]]
@@ -339,11 +483,113 @@ def write_svg():
         else:
             out.append(f'<text x="{x}" y="{y+4}" text-anchor="middle" fill="{text}" '
                        f'font-size="10" font-weight="600">{n["label"]}</text>')
-    out.append(f'<text x="470" y="486" text-anchor="middle" fill="#94a3b8" font-size="11">'
-               f'Interactive version with all {len(NODES)} nodes: knowledge-graph/index.html · '
-               'Neo4j import: knowledge-graph/graph.cypher</text>')
+    out.append(f'<text x="{W // 2}" y="{H - 18}" text-anchor="middle" fill="#94a3b8" '
+               f'font-size="11">Interactive version with all {len(NODES)} nodes: '
+               'knowledge-graph/index.html · Neo4j import: knowledge-graph/graph.cypher</text>')
     out.append('</svg>')
     with open(os.path.join(HERE, "..", "assets", "knowledge-graph.svg"), "w") as f:
+        f.write("\n".join(out) + "\n")
+
+
+def write_full_svg():
+    """Static render of the *complete* graph — the same picture index.html shows.
+
+    Runs the viewer's force simulation (identical constants) headlessly with a
+    fixed seed, so the output is deterministic and regenerates with the graph.
+    """
+    import math
+
+    W, H, PAD = 1240, 860, 80
+    n_count = len(NODES)
+    pos = {n["id"]: [W / 2 + math.cos(i * 2.399) * (120 + 9 * i),
+                     H / 2 + math.sin(i * 2.399) * (90 + 6 * i)]
+           for i, n in enumerate(NODES)}
+    vel = {n["id"]: [0.0, 0.0] for n in NODES}
+    ids = [n["id"] for n in NODES]
+
+    degree = {}
+    for e in EDGES:
+        degree[e["source"]] = degree.get(e["source"], 0) + 1
+        degree[e["target"]] = degree.get(e["target"], 0) + 1
+    radius = {i: 7 + min(11, degree.get(i, 1) * 1.3) for i in ids}
+
+    for _ in range(1200):                                    # springs
+        for e in EDGES:
+            a, b = pos[e["source"]], pos[e["target"]]
+            dx, dy = b[0] - a[0], b[1] - a[1]
+            d = math.hypot(dx, dy) or 1
+            f = (d - 150) * 0.004
+            vel[e["source"]][0] += f * dx / d; vel[e["source"]][1] += f * dy / d
+            vel[e["target"]][0] -= f * dx / d; vel[e["target"]][1] -= f * dy / d
+        for i in range(n_count):                             # repulsion
+            for j in range(i + 1, n_count):
+                a, b = pos[ids[i]], pos[ids[j]]
+                dx, dy = b[0] - a[0], b[1] - a[1]
+                d2 = dx * dx + dy * dy or 1
+                if d2 < 160000:
+                    d = math.sqrt(d2); f = 2600 / d2
+                    vel[ids[i]][0] -= f * dx / d; vel[ids[i]][1] -= f * dy / d
+                    vel[ids[j]][0] += f * dx / d; vel[ids[j]][1] += f * dy / d
+        for i in ids:                                        # centering + integrate
+            vel[i][0] += (W / 2 - pos[i][0]) * 0.0008
+            vel[i][1] += (H / 2 - pos[i][1]) * 0.0008
+            vel[i][0] *= 0.85; vel[i][1] *= 0.85
+            pos[i][0] += vel[i][0]; pos[i][1] += vel[i][1]
+
+    xs = [p[0] for p in pos.values()]; ys = [p[1] for p in pos.values()]
+    span_x = max(1, max(xs) - min(xs)); span_y = max(1, max(ys) - min(ys))
+    s = min((W - 2 * PAD) / span_x, (H - 2 * PAD - 60) / span_y)
+    off_x = (W - span_x * s) / 2                       # centre the drawing
+    off_y = 50 + (H - 50 - span_y * s) / 2
+    for i in ids:
+        pos[i][0] = off_x + (pos[i][0] - min(xs)) * s
+        pos[i][1] = off_y + (pos[i][1] - min(ys)) * s
+
+    fill = {CH: "#60a5fa", TOOL: "#4ade80", CONCEPT: "#c084fc"}
+    esc = lambda t: t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
+           'font-family="Segoe UI, Helvetica, Arial, sans-serif">',
+           f'<rect width="{W}" height="{H}" rx="12" fill="#0f172a"/>',
+           f'<text x="28" y="36" fill="#e2e8f0" font-size="18" font-weight="700">'
+           f'🧠 The AI Engineering Brain — Knowledge Graph</text>',
+           f'<text x="28" y="55" fill="#94a3b8" font-size="12">'
+           f'{n_count} nodes · {len(EDGES)} relationships · '
+           f'interactive version: knowledge-graph/index.html</text>']
+    for e in EDGES:
+        a, b = pos[e["source"]], pos[e["target"]]
+        out.append(f'<line x1="{a[0]:.1f}" y1="{a[1]:.1f}" x2="{b[0]:.1f}" y2="{b[1]:.1f}" '
+                   'stroke="#334155" stroke-width="1" stroke-opacity="0.55"/>')
+
+    placed = []                                              # simple label de-collision
+    for n in sorted(NODES, key=lambda n: -degree.get(n["id"], 0)):
+        x, y = pos[n["id"]]; r = radius[n["id"]]
+        out.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r:.1f}" fill="{fill[n["type"]]}"/>')
+        w = len(n["label"]) * 5.3
+        # candidates: above, below, further above/below, then right, then left
+        cands = [(x, y - r - 6, "middle"), (x, y + r + 13, "middle"),
+                 (x, y - r - 18, "middle"), (x, y + r + 25, "middle"),
+                 (x + r + 5, y + 3, "start"), (x - r - 5, y + 3, "end")]
+        for lx, ly, anchor in cands:
+            x0 = lx if anchor == "start" else (lx - w if anchor == "end" else lx - w / 2)
+            box = (x0, ly - 9, x0 + w, ly + 3)
+            if any(box[0] < p[2] and p[0] < box[2] and box[1] < p[3] and p[1] < box[3]
+                   for p in placed):
+                continue
+            placed.append(box)
+            out.append(f'<text x="{lx:.1f}" y="{ly:.1f}" text-anchor="{anchor}" fill="#e2e8f0" '
+                       f'font-size="10.5">{esc(n["label"])}</text>')
+            break
+        else:                                            # never drop a label outright
+            out.append(f'<text x="{x:.1f}" y="{y - r - 6:.1f}" text-anchor="middle" '
+                       f'fill="#e2e8f0" font-size="10.5">{esc(n["label"])}</text>')
+
+    for i, (lbl, col) in enumerate([("Chapter", "#60a5fa"), ("Tool", "#4ade80"),
+                                    ("Concept", "#c084fc")]):
+        lx = 28 + i * 100
+        out.append(f'<circle cx="{lx}" cy="{H-26}" r="6" fill="{col}"/>')
+        out.append(f'<text x="{lx+13}" y="{H-22}" fill="#94a3b8" font-size="12">{lbl}</text>')
+    out.append('</svg>')
+    with open(os.path.join(HERE, "..", "assets", "knowledge-graph-full.svg"), "w") as f:
         f.write("\n".join(out) + "\n")
 
 
@@ -352,4 +598,6 @@ if __name__ == "__main__":
     write_cypher()
     write_html()
     write_svg()
-    print(f"nodes={len(NODES)} edges={len(EDGES)} -> graph.json, graph.cypher, index.html, ../assets/knowledge-graph.svg")
+    write_full_svg()
+    print(f"nodes={len(NODES)} edges={len(EDGES)} -> graph.json, graph.cypher, index.html, "
+          f"../assets/knowledge-graph.svg, ../assets/knowledge-graph-full.svg")
