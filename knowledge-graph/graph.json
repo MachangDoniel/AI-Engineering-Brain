@@ -91,6 +91,24 @@
       "url": "../chapters/15-virtual-organizations.md"
     },
     {
+      "id": "c16",
+      "label": "Ch 16 \u2014 Spec-Driven Development",
+      "type": "chapter",
+      "url": "../chapters/16-spec-driven-development.md"
+    },
+    {
+      "id": "c17",
+      "label": "Ch 17 \u2014 Git Worktrees",
+      "type": "chapter",
+      "url": "../chapters/17-git-worktrees.md"
+    },
+    {
+      "id": "c18",
+      "label": "Ch 18 \u2014 Sprint Tracking",
+      "type": "chapter",
+      "url": "../chapters/18-sprint-tracking.md"
+    },
+    {
       "id": "cA",
       "label": "Appendix \u2014 Tool Directory",
       "type": "chapter",
@@ -199,6 +217,18 @@
       "url": "https://github.com/langchain-ai/langgraph"
     },
     {
+      "id": "git",
+      "label": "Git",
+      "type": "tool",
+      "url": "https://git-scm.com/docs/git-worktree"
+    },
+    {
+      "id": "fork",
+      "label": "Fork",
+      "type": "tool",
+      "url": "https://git-fork.com"
+    },
+    {
       "id": "prompteng",
       "label": "Prompt Engineering",
       "type": "concept"
@@ -266,6 +296,21 @@
     {
       "id": "vo",
       "label": "Virtual Organization",
+      "type": "concept"
+    },
+    {
+      "id": "worktree",
+      "label": "Git Worktree",
+      "type": "concept"
+    },
+    {
+      "id": "sprinttrack",
+      "label": "Sprint Tracking",
+      "type": "concept"
+    },
+    {
+      "id": "adr",
+      "label": "Decision Record",
       "type": "concept"
     }
   ],
@@ -342,6 +387,21 @@
     },
     {
       "source": "c15",
+      "rel": "FOLLOWED_BY",
+      "target": "c16"
+    },
+    {
+      "source": "c16",
+      "rel": "FOLLOWED_BY",
+      "target": "c17"
+    },
+    {
+      "source": "c17",
+      "rel": "FOLLOWED_BY",
+      "target": "c18"
+    },
+    {
+      "source": "c18",
       "rel": "FOLLOWED_BY",
       "target": "cA"
     },
@@ -474,6 +534,36 @@
       "source": "c15",
       "rel": "COVERS",
       "target": "vo"
+    },
+    {
+      "source": "c16",
+      "rel": "COVERS",
+      "target": "specdriven"
+    },
+    {
+      "source": "c17",
+      "rel": "COVERS",
+      "target": "worktree"
+    },
+    {
+      "source": "c17",
+      "rel": "COVERS",
+      "target": "git"
+    },
+    {
+      "source": "c17",
+      "rel": "RECOMMENDS",
+      "target": "fork"
+    },
+    {
+      "source": "c18",
+      "rel": "COVERS",
+      "target": "sprinttrack"
+    },
+    {
+      "source": "c18",
+      "rel": "COVERS",
+      "target": "adr"
     },
     {
       "source": "cA",
@@ -689,6 +779,101 @@
       "source": "vo",
       "rel": "REQUIRES",
       "target": "compound"
+    },
+    {
+      "source": "specdriven",
+      "rel": "FEEDS",
+      "target": "compound"
+    },
+    {
+      "source": "specdriven",
+      "rel": "CONTRACTS",
+      "target": "mas"
+    },
+    {
+      "source": "specdriven",
+      "rel": "MODELED_IN",
+      "target": "kg"
+    },
+    {
+      "source": "git",
+      "rel": "PROVIDES",
+      "target": "worktree"
+    },
+    {
+      "source": "fork",
+      "rel": "SUPPORTS",
+      "target": "worktree"
+    },
+    {
+      "source": "mas",
+      "rel": "REQUIRES",
+      "target": "worktree"
+    },
+    {
+      "source": "vo",
+      "rel": "USES",
+      "target": "worktree"
+    },
+    {
+      "source": "compound",
+      "rel": "USES",
+      "target": "worktree"
+    },
+    {
+      "source": "worktree",
+      "rel": "COMPLEMENTS",
+      "target": "orchestration"
+    },
+    {
+      "source": "worktree",
+      "rel": "ISOLATES",
+      "target": "claudecode"
+    },
+    {
+      "source": "worktree",
+      "rel": "VERIFIES",
+      "target": "specdriven"
+    },
+    {
+      "source": "graphify",
+      "rel": "INDEXES",
+      "target": "worktree"
+    },
+    {
+      "source": "sprinttrack",
+      "rel": "PRODUCES",
+      "target": "adr"
+    },
+    {
+      "source": "sprinttrack",
+      "rel": "IMPLEMENTS",
+      "target": "compound"
+    },
+    {
+      "source": "sprinttrack",
+      "rel": "COMPLEMENTS",
+      "target": "specdriven"
+    },
+    {
+      "source": "sprinttrack",
+      "rel": "ENABLES",
+      "target": "memory"
+    },
+    {
+      "source": "adr",
+      "rel": "FEEDS",
+      "target": "kg"
+    },
+    {
+      "source": "adr",
+      "rel": "MODELED_IN",
+      "target": "propgraph"
+    },
+    {
+      "source": "claudecode",
+      "rel": "MAINTAINS",
+      "target": "sprinttrack"
     }
   ]
 }

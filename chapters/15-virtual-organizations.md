@@ -1,4 +1,4 @@
-> [◀ Chapter 14](14-multi-agent-systems.md) · [🏠 Home](../README.md) · [Appendix: Tool Directory ▶](../appendix/tool-directory.md)
+> [◀ Chapter 14](14-multi-agent-systems.md) · [🏠 Home](../README.md) · [Chapter 16: Spec-Driven Development ▶](16-spec-driven-development.md)
 
 ---
 
@@ -279,4 +279,4 @@ This is the book's most speculative chapter, and deliberately so. Frameworks lik
 
 ---
 
-> [◀ Chapter 14: Multi-Agent Systems](14-multi-agent-systems.md) · [🏠 Home](../README.md) · [Appendix: Tool Directory ▶](../appendix/tool-directory.md)
+> [◀ Chapter 14: Multi-Agent Systems](14-multi-agent-systems.md) · [🏠 Home](../README.md) · [Chapter 16: Spec-Driven Development ▶](16-spec-driven-development.md)

@@ -17,6 +17,9 @@ CREATE (:Chapter {id: 'c12', name: "Ch 12 — Production", url: "../chapters/12-
 CREATE (:Chapter {id: 'c13', name: "Ch 13 — Compound Engineering", url: "../chapters/13-compound-engineering.md"});
 CREATE (:Chapter {id: 'c14', name: "Ch 14 — Multi-Agent Systems", url: "../chapters/14-multi-agent-systems.md"});
 CREATE (:Chapter {id: 'c15', name: "Ch 15 — Virtual Organizations", url: "../chapters/15-virtual-organizations.md"});
+CREATE (:Chapter {id: 'c16', name: "Ch 16 — Spec-Driven Development", url: "../chapters/16-spec-driven-development.md"});
+CREATE (:Chapter {id: 'c17', name: "Ch 17 — Git Worktrees", url: "../chapters/17-git-worktrees.md"});
+CREATE (:Chapter {id: 'c18', name: "Ch 18 — Sprint Tracking", url: "../chapters/18-sprint-tracking.md"});
 CREATE (:Chapter {id: 'cA', name: "Appendix — Tool Directory", url: "../appendix/tool-directory.md"});
 CREATE (:Tool {id: 'graphify', name: "Graphify", url: "https://github.com/safishamsi/graphify"});
 CREATE (:Tool {id: 'graphiti', name: "Graphiti", url: "https://github.com/getzep/graphiti"});
@@ -35,6 +38,8 @@ CREATE (:Tool {id: 'llamaindex', name: "LlamaIndex", url: "https://www.llamainde
 CREATE (:Tool {id: 'deepwiki', name: "DeepWiki", url: "https://deepwiki.com"});
 CREATE (:Tool {id: 'gitingest', name: "Gitingest", url: "https://gitingest.com"});
 CREATE (:Tool {id: 'langgraph', name: "LangGraph", url: "https://github.com/langchain-ai/langgraph"});
+CREATE (:Tool {id: 'git', name: "Git", url: "https://git-scm.com/docs/git-worktree"});
+CREATE (:Tool {id: 'fork', name: "Fork", url: "https://git-fork.com"});
 CREATE (:Concept {id: 'prompteng', name: "Prompt Engineering"});
 CREATE (:Concept {id: 'contexteng', name: "Context Engineering"});
 CREATE (:Concept {id: 'rag', name: "RAG"});
@@ -49,6 +54,9 @@ CREATE (:Concept {id: 'compound', name: "Compound Engineering"});
 CREATE (:Concept {id: 'orchestration', name: "Agent Orchestration"});
 CREATE (:Concept {id: 'mas', name: "Multi-Agent System"});
 CREATE (:Concept {id: 'vo', name: "Virtual Organization"});
+CREATE (:Concept {id: 'worktree', name: "Git Worktree"});
+CREATE (:Concept {id: 'sprinttrack', name: "Sprint Tracking"});
+CREATE (:Concept {id: 'adr', name: "Decision Record"});
 
 MATCH (a {id: 'c1'}), (b {id: 'c2'}) CREATE (a)-[:FOLLOWED_BY]->(b);
 MATCH (a {id: 'c2'}), (b {id: 'c3'}) CREATE (a)-[:FOLLOWED_BY]->(b);
@@ -64,7 +72,10 @@ MATCH (a {id: 'c11'}), (b {id: 'c12'}) CREATE (a)-[:FOLLOWED_BY]->(b);
 MATCH (a {id: 'c12'}), (b {id: 'c13'}) CREATE (a)-[:FOLLOWED_BY]->(b);
 MATCH (a {id: 'c13'}), (b {id: 'c14'}) CREATE (a)-[:FOLLOWED_BY]->(b);
 MATCH (a {id: 'c14'}), (b {id: 'c15'}) CREATE (a)-[:FOLLOWED_BY]->(b);
-MATCH (a {id: 'c15'}), (b {id: 'cA'}) CREATE (a)-[:FOLLOWED_BY]->(b);
+MATCH (a {id: 'c15'}), (b {id: 'c16'}) CREATE (a)-[:FOLLOWED_BY]->(b);
+MATCH (a {id: 'c16'}), (b {id: 'c17'}) CREATE (a)-[:FOLLOWED_BY]->(b);
+MATCH (a {id: 'c17'}), (b {id: 'c18'}) CREATE (a)-[:FOLLOWED_BY]->(b);
+MATCH (a {id: 'c18'}), (b {id: 'cA'}) CREATE (a)-[:FOLLOWED_BY]->(b);
 MATCH (a {id: 'c1'}), (b {id: 'kg'}) CREATE (a)-[:COVERS]->(b);
 MATCH (a {id: 'c2'}), (b {id: 'rag'}) CREATE (a)-[:COVERS]->(b);
 MATCH (a {id: 'c2'}), (b {id: 'graphrag'}) CREATE (a)-[:COVERS]->(b);
@@ -91,6 +102,12 @@ MATCH (a {id: 'c13'}), (b {id: 'compound'}) CREATE (a)-[:COVERS]->(b);
 MATCH (a {id: 'c14'}), (b {id: 'mas'}) CREATE (a)-[:COVERS]->(b);
 MATCH (a {id: 'c14'}), (b {id: 'orchestration'}) CREATE (a)-[:COVERS]->(b);
 MATCH (a {id: 'c15'}), (b {id: 'vo'}) CREATE (a)-[:COVERS]->(b);
+MATCH (a {id: 'c16'}), (b {id: 'specdriven'}) CREATE (a)-[:COVERS]->(b);
+MATCH (a {id: 'c17'}), (b {id: 'worktree'}) CREATE (a)-[:COVERS]->(b);
+MATCH (a {id: 'c17'}), (b {id: 'git'}) CREATE (a)-[:COVERS]->(b);
+MATCH (a {id: 'c17'}), (b {id: 'fork'}) CREATE (a)-[:RECOMMENDS]->(b);
+MATCH (a {id: 'c18'}), (b {id: 'sprinttrack'}) CREATE (a)-[:COVERS]->(b);
+MATCH (a {id: 'c18'}), (b {id: 'adr'}) CREATE (a)-[:COVERS]->(b);
 MATCH (a {id: 'cA'}), (b {id: 'sourcegraph'}) CREATE (a)-[:CATALOGS]->(b);
 MATCH (a {id: 'cA'}), (b {id: 'llamaindex'}) CREATE (a)-[:CATALOGS]->(b);
 MATCH (a {id: 'cA'}), (b {id: 'deepwiki'}) CREATE (a)-[:CATALOGS]->(b);
@@ -134,9 +151,42 @@ MATCH (a {id: 'vo'}), (b {id: 'mas'}) CREATE (a)-[:CONTAINS]->(b);
 MATCH (a {id: 'vo'}), (b {id: 'memory'}) CREATE (a)-[:REQUIRES]->(b);
 MATCH (a {id: 'vo'}), (b {id: 'kg'}) CREATE (a)-[:USES]->(b);
 MATCH (a {id: 'vo'}), (b {id: 'compound'}) CREATE (a)-[:REQUIRES]->(b);
+MATCH (a {id: 'specdriven'}), (b {id: 'compound'}) CREATE (a)-[:FEEDS]->(b);
+MATCH (a {id: 'specdriven'}), (b {id: 'mas'}) CREATE (a)-[:CONTRACTS]->(b);
+MATCH (a {id: 'specdriven'}), (b {id: 'kg'}) CREATE (a)-[:MODELED_IN]->(b);
+MATCH (a {id: 'git'}), (b {id: 'worktree'}) CREATE (a)-[:PROVIDES]->(b);
+MATCH (a {id: 'fork'}), (b {id: 'worktree'}) CREATE (a)-[:SUPPORTS]->(b);
+MATCH (a {id: 'mas'}), (b {id: 'worktree'}) CREATE (a)-[:REQUIRES]->(b);
+MATCH (a {id: 'vo'}), (b {id: 'worktree'}) CREATE (a)-[:USES]->(b);
+MATCH (a {id: 'compound'}), (b {id: 'worktree'}) CREATE (a)-[:USES]->(b);
+MATCH (a {id: 'worktree'}), (b {id: 'orchestration'}) CREATE (a)-[:COMPLEMENTS]->(b);
+MATCH (a {id: 'worktree'}), (b {id: 'claudecode'}) CREATE (a)-[:ISOLATES]->(b);
+MATCH (a {id: 'worktree'}), (b {id: 'specdriven'}) CREATE (a)-[:VERIFIES]->(b);
+MATCH (a {id: 'graphify'}), (b {id: 'worktree'}) CREATE (a)-[:INDEXES]->(b);
+MATCH (a {id: 'sprinttrack'}), (b {id: 'adr'}) CREATE (a)-[:PRODUCES]->(b);
+MATCH (a {id: 'sprinttrack'}), (b {id: 'compound'}) CREATE (a)-[:IMPLEMENTS]->(b);
+MATCH (a {id: 'sprinttrack'}), (b {id: 'specdriven'}) CREATE (a)-[:COMPLEMENTS]->(b);
+MATCH (a {id: 'sprinttrack'}), (b {id: 'memory'}) CREATE (a)-[:ENABLES]->(b);
+MATCH (a {id: 'adr'}), (b {id: 'kg'}) CREATE (a)-[:FEEDS]->(b);
+MATCH (a {id: 'adr'}), (b {id: 'propgraph'}) CREATE (a)-[:MODELED_IN]->(b);
+MATCH (a {id: 'claudecode'}), (b {id: 'sprinttrack'}) CREATE (a)-[:MAINTAINS]->(b);
 
 // Example queries
 // Which chapters cover the recommended stack?
 // MATCH (c:Chapter)-[:COVERS]->(t:Tool) RETURN c.name, t.name;
 // What does Graphify connect to?
 // MATCH (g:Tool {name:'Graphify'})-[r]-(x) RETURN g.name, type(r), x.name;
+
+// --- Ch 18: the engineering record ---
+// What does Sprint Tracking connect to?
+// MATCH (s:Concept {name:'Sprint Tracking'})-[r]-(x) RETURN type(r), x.name;
+// Which chapter should I read to learn about decision records?
+// MATCH (c:Chapter)-[:COVERS]->(:Concept {name:'Decision Record'}) RETURN c.name, c.url;
+// The Ch 18 thesis as a path: how does a decision reach the knowledge graph?
+// MATCH p = (:Concept {name:'Sprint Tracking'})-[:PRODUCES]->()-[:FEEDS]->(:Concept {name:'Knowledge Graph'})
+// RETURN [n IN nodes(p) | n.name] AS path;
+// Which practices feed Compound Engineering, and how? (Ch 13 ← 16, 18)
+// MATCH (x)-[r:IMPLEMENTS|BUILDS_ON|FEEDS]->(:Concept {name:'Compound Engineering'})
+// RETURN x.name, type(r);
+// Everything an agent is expected to maintain
+// MATCH (t:Tool)-[:MAINTAINS]->(x) RETURN t.name, x.name;

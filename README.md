@@ -56,6 +56,14 @@ Modern AI coding assistants are powerful, but they mostly see your code as *text
 |---|---------|-------------------|
 | 14 | [Multi-Agent Systems](chapters/14-multi-agent-systems.md) | Why single agents break, the monolith→microservices analogy, orchestration patterns, and when *not* to use a MAS |
 | 15 | [Virtual Organizations](chapters/15-virtual-organizations.md) | From agent teams to AI companies: departments, governance, org-wide memory, and when *not* to build a VO |
+
+### Part V — Practices
+
+| # | Chapter | What you'll learn |
+|---|---------|-------------------|
+| 16 | [Spec-Driven Development](chapters/16-spec-driven-development.md) | Specs as the artifact you keep: acceptance criteria, the spec-driven loop, specs as graph knowledge, and when *not* to spec-drive |
+| 17 | [Git Worktrees](chapters/17-git-worktrees.md) | Parallel filesystems for parallel agents: the agent-per-worktree pattern, runtime isolation, integration worktrees, and when *not* to use them |
+| 18 | [Sprint Tracking](chapters/18-sprint-tracking.md) | The engineering record that writes itself: an `AGENTS.md`-declared tracker, decision logs with rejected alternatives, dashboard reading, and when *not* to track |
 | A | [Appendix: Tool Directory](appendix/tool-directory.md) | Reference catalog of 10+ tools with verified links and use cases |
 
 > **New here?** Start with [Chapter 1](chapters/01-executive-summary.md) and follow the *Next* links at the bottom of each chapter.
@@ -64,11 +72,22 @@ Modern AI coding assistants are powerful, but they mostly see your code as *text
 
 ## 🕸️ Project Knowledge Graph
 
-This library practices what it preaches: the whole book — chapters, tools, and concepts — is modeled as a knowledge graph (47 nodes, 84 relationships).
+This library practices what it preaches: the whole book — chapters, tools, and concepts — is modeled as a knowledge graph (55 nodes, 112 relationships).
 
 <p align="center">
-  <img src="assets/knowledge-graph.svg" alt="Project knowledge graph: concepts, stack, and agents" width="720">
+  <img src="assets/knowledge-graph-full.svg" alt="The complete project knowledge graph: 55 chapter, tool, and concept nodes with 112 relationships" width="860">
 </p>
+
+<p align="center"><em>The complete graph — every chapter, tool, and concept. A static render of the interactive viewer below.</em></p>
+
+<details>
+<summary><b>Stack topology only</b> — the same graph with chapters stripped out, for reading the tool/concept layer on its own</summary>
+
+<p align="center">
+  <img src="assets/knowledge-graph.svg" alt="Project knowledge graph: concepts, stack, agents, and the Part IV–V organization and practice cluster" width="720">
+</p>
+
+</details>
 
 - **Explore interactively:** open [knowledge-graph/index.html](knowledge-graph/index.html) in a browser — drag nodes, hover for relationships, click to jump to a chapter or tool
 - **Load it into Neo4j:** [knowledge-graph/graph.cypher](knowledge-graph/graph.cypher) imports the graph into the book's own recommended stack (`cat graph.cypher | cypher-shell`)

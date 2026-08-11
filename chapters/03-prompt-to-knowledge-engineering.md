@@ -342,51 +342,11 @@ Together, they provide richer context than either technique alone.
 
 # 3.7 Spec-Driven Development
 
-As AI systems become more capable, another trend has emerged: **specification-first development**.
+As AI systems become more capable, another trend has emerged: **specification-first development**. Rather than asking an AI to "build a login screen," developers provide a detailed specification — functional and non-functional requirements, API contracts, data models, constraints, and acceptance criteria — and the AI treats that spec as the authoritative source when generating code. This reduces ambiguity and improves consistency.
 
-Rather than asking an AI to "build a login screen," developers increasingly provide detailed specifications.
+Specifications need not be static documents; they can be modeled as graph entities (`Feature → HAS_REQUIREMENT → … → TESTED_BY → Tests`), creating traceability from intent to implementation.
 
-A specification may describe:
-
-* Functional requirements
-* Non-functional requirements
-* API contracts
-* Data models
-* Acceptance criteria
-* UI behavior
-* Constraints
-
-The AI uses this specification as the authoritative source when generating code.
-
-This reduces ambiguity and improves consistency.
-
----
-
-## Specifications as Knowledge
-
-Specifications are often treated as documents.
-
-However, they can also be represented as graph entities.
-
-For example:
-
-```text
-Authentication Feature
-↓
-HAS_REQUIREMENT
-↓
-JWT Authentication
-↓
-IMPLEMENTS
-↓
-AuthService
-↓
-TESTED_BY
-↓
-AuthIntegrationTests
-```
-
-This creates traceability from requirements to implementation.
+Because this discipline underpins so much of what follows — it is the input that an agent, a multi-agent system, and the compound-engineering loop all assume exists — it receives a full treatment of its own in **[Chapter 16 — Spec-Driven Development](16-spec-driven-development.md)**.
 
 ---
 
