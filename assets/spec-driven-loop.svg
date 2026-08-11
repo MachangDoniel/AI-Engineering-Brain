@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f87171"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="960" height="520" rx="12" fill="#0f172a"/>
+  <text x="480" y="34" text-anchor="middle" fill="#e2e8f0" font-size="20" font-weight="700">Spec-Driven Development — the contract before the code</text>
+
+  <!-- The old way (muted) -->
+  <text x="60" y="66" fill="#64748b" font-size="12" font-weight="700">The old way — prompt and hope</text>
+  <rect x="60" y="74" width="210" height="36" rx="8" fill="#1e293b" stroke="#475569"/>
+  <text x="165" y="97" text-anchor="middle" fill="#94a3b8" font-size="11.5">"Build a login screen"</text>
+  <line x1="270" y1="92" x2="298" y2="92" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <rect x="300" y="74" width="110" height="36" rx="8" fill="#1e293b" stroke="#475569"/>
+  <text x="355" y="97" text-anchor="middle" fill="#94a3b8" font-size="11.5">Generate</text>
+  <line x1="410" y1="92" x2="438" y2="92" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <rect x="440" y="74" width="220" height="36" rx="8" fill="#1e293b" stroke="#475569"/>
+  <text x="550" y="97" text-anchor="middle" fill="#94a3b8" font-size="11.5">Plausible? Ship and pray</text>
+  <text x="680" y="96" fill="#64748b" font-size="11" font-style="italic">ambiguity in → ambiguity out</text>
+
+  <line x1="40" y1="130" x2="920" y2="130" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- The spec-driven loop -->
+  <text x="60" y="156" fill="#93c5fd" font-size="13" font-weight="700">The spec-driven loop</text>
+
+  <!-- Specification (source of truth) -->
+  <rect x="40" y="168" width="256" height="256" rx="10" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="56" y="192" fill="#bfdbfe" font-size="14" font-weight="700">Specification</text>
+  <text x="280" y="190" text-anchor="end" fill="#93c5fd" font-size="9">source of truth</text>
+  <text x="56" y="220" fill="#dbeafe" font-size="11.5">• Requirements (functional + non-functional)</text>
+  <text x="56" y="244" fill="#dbeafe" font-size="11.5">• API contracts</text>
+  <text x="56" y="268" fill="#dbeafe" font-size="11.5">• Data models</text>
+  <text x="56" y="292" fill="#fcd34d" font-size="11.5" font-weight="600">• Acceptance criteria</text>
+  <text x="56" y="316" fill="#dbeafe" font-size="11.5">• Constraints</text>
+  <text x="56" y="340" fill="#dbeafe" font-size="11.5">• Out of scope</text>
+  <line x1="56" y1="356" x2="280" y2="356" stroke="#334155" stroke-width="1"/>
+  <text x="56" y="378" fill="#93c5fd" font-size="10.5">what to build · how it will be verified</text>
+  <text x="56" y="400" fill="#93c5fd" font-size="10.5">the artifact you keep, not the prompt</text>
+
+  <!-- Generate -->
+  <rect x="360" y="238" width="180" height="66" rx="10" fill="#14532d" stroke="#22c55e"/>
+  <text x="450" y="270" text-anchor="middle" fill="#bbf7d0" font-size="14" font-weight="700">AI Agent</text>
+  <text x="450" y="289" text-anchor="middle" fill="#86efac" font-size="11">generates code</text>
+  <line x1="296" y1="271" x2="356" y2="271" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Verify -->
+  <rect x="604" y="238" width="216" height="66" rx="10" fill="#4a1d6e" stroke="#a855f7"/>
+  <text x="712" y="270" text-anchor="middle" fill="#e9d5ff" font-size="14" font-weight="700">Verify</text>
+  <text x="712" y="289" text-anchor="middle" fill="#d8b4fe" font-size="10.5">against acceptance criteria</text>
+  <line x1="540" y1="271" x2="600" y2="271" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Pass -> Ship -->
+  <text x="838" y="264" text-anchor="middle" fill="#86efac" font-size="10">✓ pass</text>
+  <line x1="820" y1="271" x2="862" y2="271" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="864" y="248" width="76" height="46" rx="10" fill="#422006" stroke="#f59e0b"/>
+  <text x="902" y="276" text-anchor="middle" fill="#fcd34d" font-size="12.5" font-weight="700">Ship</text>
+
+  <!-- Fail -> refine spec (feedback path back to Specification) -->
+  <path d="M712 304 L712 452 L168 452 L168 426" fill="none" stroke="#f87171" stroke-width="2" marker-end="url(#arrowRed)"/>
+  <text x="440" y="446" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="600">✗ fails → sharpen the spec (the gap is usually an ambiguity, not a bug)</text>
+
+  <!-- Caption -->
+  <text x="480" y="498" text-anchor="middle" fill="#94a3b8" font-size="11">One spec, reused: the plan compound engineering keeps (Ch 13) · the contract a MAS runs on (Ch 14) · nodes in the knowledge graph (Ch 5–8)</text>
+</svg>

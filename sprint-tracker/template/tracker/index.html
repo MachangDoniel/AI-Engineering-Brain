@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprint Tracker — NexusPay</title>
+<!--
+  ┌──────────────────────────────────────────────────────────────────────────┐
+  │  SPRINT TRACKER — self-contained dashboard                               │
+  │                                                                          │
+  │  The ONLY block an agent edits is the JSON in the script element with    │
+  │  id=tracker-data, at the bottom of this file. Markup, CSS and the        │
+  │  renderer above it are frozen — never edit them per project.             │
+  │  Field-by-field contract: ../../SCHEMA.md                                │
+  └──────────────────────────────────────────────────────────────────────────┘
+-->
+<style>
+  :root {
+    color-scheme: light;
+    --surface-1:   #fcfcfb;
+    --plane:       #f9f9f7;
+    --ink-1:       #0b0b0b;
+    --ink-2:       #52514e;
+    --ink-3:       #898781;
+    --grid:        #e1e0d9;
+    --baseline:    #c3c2b7;
+    --hairline:    rgba(11,11,11,0.10);
+    --series-1:    #2a78d6;
+    --series-1-soft:#cde2fb;
+    --good:        #0ca30c;
+    --warning:     #fab219;
+    --serious:     #ec835a;
+    --critical:    #d03b3b;
+    --delta-good:  #006300;
+    --radius:      10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-1: #1a1a19;
+      --plane:     #0d0d0d;
+      --ink-1:     #ffffff;
+      --ink-2:     #c3c2b7;
+      --ink-3:     #898781;
+      --grid:      #2c2c2a;
+      --baseline:  #383835;
+      --hairline:  rgba(255,255,255,0.10);
+      --series-1:  #3987e5;
+      --series-1-soft:#184f95;
+      --delta-good:#0ca30c;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --plane:     #0d0d0d;
+    --ink-1:     #ffffff;
+    --ink-2:     #c3c2b7;
+    --ink-3:     #898781;
+    --grid:      #2c2c2a;
+    --baseline:  #383835;
+    --hairline:  rgba(255,255,255,0.10);
+    --series-1:  #3987e5;
+    --series-1-soft:#184f95;
+    --delta-good:#0ca30c;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--plane);
+    color: var(--ink-1);
+    font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 32px 20px 72px; }
+
+  /* ── header ─────────────────────────────────────────────────────────── */
+  header.top { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; }
+  h1 { font-size: 26px; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .sub { color: var(--ink-2); font-size: 14px; margin: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .chip { font-size: 12px; color: var(--ink-2); border: 1px solid var(--hairline); border-radius: 999px; padding: 3px 9px; background: var(--surface-1); }
+  .toggle {
+    font: inherit; font-size: 13px; color: var(--ink-2); cursor: pointer;
+    background: var(--surface-1); border: 1px solid var(--hairline);
+    border-radius: 8px; padding: 7px 12px;
+  }
+  .toggle:hover { color: var(--ink-1); }
+
+  /* ── cards ──────────────────────────────────────────────────────────── */
+  section.card {
+    background: var(--surface-1); border: 1px solid var(--hairline);
+    border-radius: var(--radius); padding: 20px; margin-top: 16px;
+  }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-3); margin: 0 0 14px; font-weight: 600; }
+  h3 { font-size: 16px; margin: 0 0 4px; }
+
+  /* ── KPI tiles ──────────────────────────────────────────────────────── */
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; margin-top: 20px; }
+  .kpi { background: var(--surface-1); padding: 16px 18px; }
+  .kpi .v { font-size: 30px; line-height: 1.1; font-weight: 600; letter-spacing: -0.02em; }
+  .kpi .k { font-size: 12px; color: var(--ink-3); margin-top: 4px; }
+  .kpi .d { font-size: 12px; color: var(--ink-2); margin-top: 2px; }
+
+  /* ── sprint tabs ────────────────────────────────────────────────────── */
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .tab {
+    font: inherit; font-size: 13px; cursor: pointer; padding: 8px 14px;
+    border-radius: 8px; border: 1px solid var(--hairline);
+    background: var(--surface-1); color: var(--ink-2);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .tab[aria-selected="true"] { background: var(--ink-1); color: var(--plane); border-color: var(--ink-1); }
+  .tab .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--baseline); }
+  .tab[data-state="active"] .dot { background: var(--good); }
+  .tab[data-state="planned"] .dot { background: var(--warning); }
+
+  /* ── goal banner ────────────────────────────────────────────────────── */
+  .goal { display: flex; flex-wrap: wrap; gap: 18px; justify-content: space-between; align-items: flex-start; }
+  .goal p { margin: 6px 0 0; color: var(--ink-2); max-width: 62ch; }
+  .dates { font-size: 13px; color: var(--ink-3); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  /* ── status rail (stacked, 2px surface gaps) ────────────────────────── */
+  .rail { display: flex; gap: 2px; height: 10px; margin: 18px 0 12px; }
+  .rail span { border-radius: 2px; min-width: 2px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--ink-2); }
+  .legend .item { display: inline-flex; align-items: center; gap: 7px; }
+  .swatch { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+  .legend b { color: var(--ink-1); font-variant-numeric: tabular-nums; }
+
+  /* ── metrics strip ──────────────────────────────────────────────────── */
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)); gap: 18px; }
+  .metrics div .v { font-size: 20px; font-weight: 600; }
+  .metrics div .k { font-size: 12px; color: var(--ink-3); }
+  .plus { color: var(--delta-good); }
+  .minus { color: var(--critical); }
+
+  /* ── commit chart ───────────────────────────────────────────────────── */
+  .chart { position: relative; height: 150px; display: flex; align-items: flex-end; gap: 2px; border-bottom: 1px solid var(--baseline); padding-bottom: 0; }
+  .bar { flex: 1; background: var(--series-1); border-radius: 4px 4px 0 0; min-height: 2px; position: relative; cursor: default; transition: opacity .12s; }
+  .bar[data-zero="1"] { background: var(--grid); }
+  .chart:hover .bar { opacity: .45; }
+  .chart .bar:hover { opacity: 1; }
+  .xaxis { display: flex; gap: 2px; margin-top: 6px; }
+  .xaxis span { flex: 1; text-align: center; font-size: 10px; color: var(--ink-3); font-variant-numeric: tabular-nums; overflow: hidden; }
+  #tip {
+    position: fixed; pointer-events: none; opacity: 0; transform: translate(-50%, -100%);
+    background: var(--ink-1); color: var(--plane); font-size: 12px; line-height: 1.4;
+    padding: 6px 9px; border-radius: 6px; white-space: nowrap; z-index: 20; transition: opacity .1s;
+  }
+  details { margin-top: 14px; }
+  summary { font-size: 13px; color: var(--ink-2); cursor: pointer; }
+
+  /* ── tables ─────────────────────────────────────────────────────────── */
+  .scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); font-weight: 600; padding: 0 12px 8px 0; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+  td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  td.num { font-variant-numeric: tabular-nums; color: var(--ink-2); white-space: nowrap; }
+  .id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--ink-3); white-space: nowrap; }
+  .files { display: block; font-size: 12px; color: var(--ink-3); margin-top: 3px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+  /* ── status pills (icon + label — never color alone) ────────────────── */
+  .pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-2); white-space: nowrap; }
+  .pill .swatch { border-radius: 50%; width: 9px; height: 9px; }
+
+  /* ── decisions ──────────────────────────────────────────────────────── */
+  .adr { border-left: 2px solid var(--series-1); padding: 2px 0 2px 16px; margin-bottom: 22px; }
+  .adr:last-child { margin-bottom: 0; }
+  .adr .meta { font-size: 12px; color: var(--ink-3); margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+  .adr dl { margin: 10px 0 0; display: grid; grid-template-columns: 108px 1fr; gap: 6px 14px; font-size: 14px; }
+  .adr dt { color: var(--ink-3); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; padding-top: 2px; }
+  .adr dd { margin: 0; color: var(--ink-2); }
+
+  /* ── timeline ───────────────────────────────────────────────────────── */
+  .tl { list-style: none; margin: 0; padding: 0; }
+  .tl li { display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--grid); font-size: 14px; }
+  .tl li:last-child { border-bottom: 0; }
+  .tl time { color: var(--ink-3); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .tl .kind { color: var(--ink-3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; margin-right: 8px; }
+
+  footer { margin-top: 28px; font-size: 12px; color: var(--ink-3); text-align: center; }
+  .empty { color: var(--ink-3); font-size: 14px; }
+  @media (max-width: 620px) {
+    .adr dl { grid-template-columns: 1fr; gap: 2px 0; }
+    .tl li { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1 id="p-name">—</h1>
+      <p class="sub" id="p-sub">—</p>
+      <div class="chips" id="p-chips"></div>
+    </div>
+    <button class="toggle" id="theme" type="button">Toggle theme</button>
+  </header>
+
+  <div class="kpis" id="kpis"></div>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Sprints"></nav>
+
+  <div id="sprint"></div>
+
+  <footer id="foot"></footer>
+</div>
+<div id="tip" role="status" aria-live="polite"></div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     TRACKER DATA — the agent edits ONLY this block. Schema: ../../SCHEMA.md
+     Newest sprint first; sprints[0] is what the dashboard opens on.
+     ═══════════════════════════════════════════════════════════════════ -->
+<script type="application/json" id="tracker-data">
+{
+  "project": {
+    "name": "NexusPay",
+    "repo": "github.com/acme/nexuspay",
+    "owner": "Doniel Tripura",
+    "stack": ["Flutter", "Spring Boot", "PostgreSQL", "Next.js"],
+    "updated": "2026-08-12"
+  },
+  "sprints": [
+    {
+      "id": "S-14",
+      "name": "Merchant Onboarding",
+      "goal": "Let a merchant self-register, pass KYC, and take a first live payment without support involvement. Target: median onboarding under 8 minutes.",
+      "status": "active",
+      "start": "2026-08-03",
+      "end": "2026-08-16",
+      "metrics": {
+        "commits": 63,
+        "prsMerged": 11,
+        "filesChanged": 148,
+        "linesAdded": 6420,
+        "linesRemoved": 1873,
+        "testsAdded": 74,
+        "coverage": 81
+      },
+      "commitActivity": [
+        { "date": "2026-08-03", "count": 4 },
+        { "date": "2026-08-04", "count": 9 },
+        { "date": "2026-08-05", "count": 7 },
+        { "date": "2026-08-06", "count": 11 },
+        { "date": "2026-08-07", "count": 6 },
+        { "date": "2026-08-08", "count": 3 },
+        { "date": "2026-08-09", "count": 0 },
+        { "date": "2026-08-10", "count": 2 },
+        { "date": "2026-08-11", "count": 12 },
+        { "date": "2026-08-12", "count": 9 }
+      ],
+      "features": [
+        {
+          "id": "F-141",
+          "title": "Merchant self-registration flow",
+          "type": "feature",
+          "status": "shipped",
+          "owner": "Doniel",
+          "points": 8,
+          "commits": 17,
+          "started": "2026-08-03",
+          "completed": "2026-08-07",
+          "notes": "Four-step wizard with resumable drafts persisted server-side.",
+          "files": ["lib/features/onboarding/", "api/merchant/RegistrationController.java"]
+        },
+        {
+          "id": "F-142",
+          "title": "KYC document upload + OCR extraction",
+          "type": "feature",
+          "status": "review",
+          "owner": "Doniel",
+          "points": 13,
+          "commits": 21,
+          "started": "2026-08-05",
+          "notes": "CameraX capture, OpenCV edge detection, server-side OCR fallback.",
+          "files": ["lib/features/kyc/", "api/kyc/OcrService.java"]
+        },
+        {
+          "id": "F-143",
+          "title": "Webhook retry with exponential backoff",
+          "type": "feature",
+          "status": "in-progress",
+          "owner": "Doniel",
+          "points": 5,
+          "commits": 9,
+          "started": "2026-08-10",
+          "files": ["api/webhook/RetryScheduler.java"]
+        },
+        {
+          "id": "F-144",
+          "title": "Settlement report export (CSV/XLSX)",
+          "type": "feature",
+          "status": "blocked",
+          "owner": "Doniel",
+          "points": 5,
+          "commits": 3,
+          "started": "2026-08-11",
+          "notes": "Waiting on finalised column spec from the finance team.",
+          "files": ["web/app/reports/"]
+        },
+        {
+          "id": "F-145",
+          "title": "Fix duplicate charge on rapid double-tap",
+          "type": "fix",
+          "status": "shipped",
+          "owner": "Doniel",
+          "points": 3,
+          "commits": 6,
+          "completed": "2026-08-08",
+          "notes": "Idempotency key issued client-side, enforced by a unique index.",
+          "files": ["lib/features/checkout/pay_button.dart", "api/payment/IdempotencyFilter.java"]
+        },
+        {
+          "id": "F-146",
+          "title": "Extract payment provider adapters behind an interface",
+          "type": "refactor",
+          "status": "shipped",
+          "owner": "Doniel",
+          "points": 8,
+          "commits": 7,
+          "completed": "2026-08-11",
+          "files": ["api/payment/provider/"]
+        },
+        {
+          "id": "F-147",
+          "title": "Merchant dashboard empty states",
+          "type": "chore",
+          "status": "planned",
+          "owner": "Doniel",
+          "points": 2,
+          "commits": 0
+        }
+      ],
+      "decisions": [
+        {
+          "id": "ADR-021",
+          "date": "2026-08-04",
+          "status": "accepted",
+          "title": "Persist onboarding drafts server-side, not in local storage",
+          "context": "Merchants abandon the wizard at the KYC step and often resume on a different device. Local drafts were lost on every reinstall and produced a 34% drop-off.",
+          "decision": "Every wizard step PATCHes a server-side draft record keyed by merchant id; the client holds no authoritative state.",
+          "alternatives": [
+            "Local storage with periodic sync — still loses data on reinstall.",
+            "No drafts, force single-session completion — rejected as hostile to KYC upload delays."
+          ],
+          "consequences": "One extra round-trip per step and a nightly job to purge drafts older than 30 days. Cross-device resume works with no client changes."
+        },
+        {
+          "id": "ADR-022",
+          "date": "2026-08-08",
+          "status": "accepted",
+          "title": "Client-issued idempotency keys for all payment mutations",
+          "context": "A double-tap on the pay button created two charges. Server-side dedupe by amount and timestamp was unreliable across retries.",
+          "decision": "The client generates a UUID per payment intent and sends it as Idempotency-Key; the API enforces uniqueness with a database index and replays the stored response on collision.",
+          "alternatives": [
+            "Debounce the button only — fixes the symptom, not network retries.",
+            "Server-side dedupe window — ambiguous for legitimate repeat payments."
+          ],
+          "consequences": "Retries are now safe at every layer. Requires the key to survive app restart, so it is stored with the pending intent."
+        },
+        {
+          "id": "ADR-023",
+          "date": "2026-08-11",
+          "status": "proposed",
+          "title": "Run OCR server-side rather than on device",
+          "context": "On-device OCR was 2.4s on mid-tier Android and produced inconsistent results on glossy IDs.",
+          "decision": "Upload the cropped image and run OCR in the API tier; keep on-device edge detection for the capture UX.",
+          "alternatives": ["Bundle a larger on-device model — adds 40MB to the APK."],
+          "consequences": "Adds a network dependency to KYC and puts document images in the request path — needs an encryption-at-rest review before this moves to accepted."
+        }
+      ],
+      "blockers": [
+        {
+          "id": "B-07",
+          "title": "Settlement CSV column spec not finalised",
+          "severity": "serious",
+          "raised": "2026-08-11",
+          "owner": "Finance",
+          "status": "open",
+          "note": "F-144 is stalled at 3 commits until the spec lands."
+        },
+        {
+          "id": "B-08",
+          "title": "KYC image retention policy unreviewed",
+          "severity": "critical",
+          "raised": "2026-08-11",
+          "owner": "Security",
+          "status": "open",
+          "note": "Gates ADR-023 from moving to accepted."
+        }
+      ],
+      "timeline": [
+        { "date": "2026-08-03", "type": "sprint", "text": "Sprint 14 opened — 7 items committed, 44 points." },
+        { "date": "2026-08-04", "type": "decision", "text": "ADR-021 accepted: server-side onboarding drafts." },
+        { "date": "2026-08-07", "type": "feature", "text": "F-141 self-registration merged to main." },
+        { "date": "2026-08-08", "type": "decision", "text": "ADR-022 accepted: client-issued idempotency keys." },
+        { "date": "2026-08-08", "type": "release", "text": "v2.7.1 hotfix shipped — duplicate charge fixed in production." },
+        { "date": "2026-08-11", "type": "blocker", "text": "B-08 raised by Security — KYC image retention unreviewed." },
+        { "date": "2026-08-12", "type": "note", "text": "F-142 opened for review; coverage up 3 points to 81%." }
+      ]
+    },
+    {
+      "id": "S-13",
+      "name": "Checkout Performance",
+      "goal": "Cut p95 checkout latency below 400ms and remove the jank on the payment sheet.",
+      "status": "complete",
+      "start": "2026-07-20",
+      "end": "2026-08-02",
+      "metrics": {
+        "commits": 47,
+        "prsMerged": 9,
+        "filesChanged": 96,
+        "linesAdded": 3110,
+        "linesRemoved": 2740,
+        "testsAdded": 38,
+        "coverage": 78
+      },
+      "commitActivity": [
+        { "date": "2026-07-20", "count": 5 },
+        { "date": "2026-07-21", "count": 8 },
+        { "date": "2026-07-22", "count": 6 },
+        { "date": "2026-07-23", "count": 4 },
+        { "date": "2026-07-24", "count": 7 },
+        { "date": "2026-07-27", "count": 3 },
+        { "date": "2026-07-28", "count": 5 },
+        { "date": "2026-07-29", "count": 4 },
+        { "date": "2026-07-30", "count": 3 },
+        { "date": "2026-08-01", "count": 2 }
+      ],
+      "features": [
+        { "id": "F-131", "title": "Cache provider capability lookup", "type": "feature", "status": "shipped", "owner": "Doniel", "points": 5, "commits": 8, "completed": "2026-07-23" },
+        { "id": "F-132", "title": "Replace payment sheet rebuild with selective listener", "type": "refactor", "status": "shipped", "owner": "Doniel", "points": 8, "commits": 14, "completed": "2026-07-28" },
+        { "id": "F-133", "title": "Batch settlement queries (N+1 removal)", "type": "fix", "status": "shipped", "owner": "Doniel", "points": 5, "commits": 11, "completed": "2026-07-30" },
+        { "id": "F-134", "title": "Add p95 latency dashboard", "type": "chore", "status": "shipped", "owner": "Doniel", "points": 3, "commits": 6, "completed": "2026-08-01" }
+      ],
+      "decisions": [
+        {
+          "id": "ADR-019",
+          "date": "2026-07-22",
+          "status": "accepted",
+          "title": "Cache provider capabilities in-process with a 5-minute TTL",
+          "context": "Each checkout made 3 capability calls to the provider, adding ~180ms to p95. Capabilities change at most weekly.",
+          "decision": "In-process Caffeine cache, 5-minute TTL, invalidated by the provider webhook.",
+          "alternatives": ["Redis cache — extra hop, unnecessary at current instance count.", "No TTL, webhook-only invalidation — risks stale data if a webhook is missed."],
+          "consequences": "p95 dropped 180ms. Capability changes take up to 5 minutes to appear if the webhook fails."
+        },
+        {
+          "id": "ADR-020",
+          "date": "2026-07-28",
+          "status": "superseded",
+          "title": "Rebuild the payment sheet with a global state notifier",
+          "context": "The sheet rebuilt entirely on every field change, dropping frames on mid-tier devices.",
+          "decision": "Moved to a single global notifier for sheet state.",
+          "alternatives": ["Per-field selectors."],
+          "consequences": "Superseded during S-14 by per-field selectors — the global notifier reintroduced full rebuilds once the sheet grew past six fields."
+        }
+      ],
+      "blockers": [],
+      "timeline": [
+        { "date": "2026-07-20", "type": "sprint", "text": "Sprint 13 opened — 4 items, 21 points." },
+        { "date": "2026-07-22", "type": "decision", "text": "ADR-019 accepted: capability caching." },
+        { "date": "2026-08-02", "type": "sprint", "text": "Sprint 13 closed — 4/4 shipped, p95 at 372ms (target 400ms)." }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+/* ── renderer — frozen. Edit only the JSON block below. ─────────────────── */
+(() => {
+  const DATA = JSON.parse(document.getElementById("tracker-data").textContent);
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+  const n = (v) => (v ?? 0).toLocaleString("en-US");
+  const day = (d) => { const [, m, dd] = String(d).split("-"); return `${m}/${dd}`; };
+
+  const STATUS = {
+    shipped:      { label: "Shipped",     color: "var(--good)" },
+    review:       { label: "In review",   color: "var(--warning)" },
+    "in-progress":{ label: "In progress", color: "var(--series-1)" },
+    blocked:      { label: "Blocked",     color: "var(--critical)" },
+    planned:      { label: "Planned",     color: "var(--baseline)" }
+  };
+  const SEVERITY = { critical: "var(--critical)", serious: "var(--serious)", warning: "var(--warning)" };
+  const ORDER = ["shipped", "review", "in-progress", "blocked", "planned"];
+
+  /* header */
+  const P = DATA.project || {};
+  $("p-name").textContent = P.name ? `${P.name} — Sprint Tracker` : "Sprint Tracker";
+  $("p-sub").textContent = [P.repo, P.owner && `owned by ${P.owner}`, P.updated && `updated ${P.updated}`]
+    .filter(Boolean).join("  ·  ");
+  $("p-chips").innerHTML = (P.stack || []).map(s => `<span class="chip">${esc(s)}</span>`).join("");
+  $("foot").textContent = `Maintained by the coding agent per AGENTS.md — do not hand-edit outside the data block. Generated ${P.updated || "—"}.`;
+
+  const sprints = DATA.sprints || [];
+  const all = sprints.flatMap(s => s.features || []);
+
+  /* KPI tiles — all-time */
+  const kpis = [
+    ["Sprints",       n(sprints.length), `${sprints.filter(s => s.status === "complete").length} complete`],
+    ["Features",      n(all.length),     `${all.filter(f => f.status === "shipped").length} shipped`],
+    ["Commits",       n(sprints.reduce((a, s) => a + (s.metrics?.commits || 0), 0)), `${n(sprints.reduce((a,s)=>a+(s.metrics?.prsMerged||0),0))} PRs merged`],
+    ["Decisions",     n(sprints.reduce((a, s) => a + (s.decisions || []).length, 0)), "logged as ADRs"],
+    ["Net lines",     `+${n(sprints.reduce((a,s)=>a+(s.metrics?.linesAdded||0),0))}`, `−${n(sprints.reduce((a,s)=>a+(s.metrics?.linesRemoved||0),0))} removed`],
+    ["Open blockers", n(sprints.flatMap(s => s.blockers || []).filter(b => b.status === "open").length), "across all sprints"]
+  ];
+  $("kpis").innerHTML = kpis.map(([k, v, d]) =>
+    `<div class="kpi"><div class="v">${v}</div><div class="k">${k}</div><div class="d">${esc(d)}</div></div>`).join("");
+
+  /* tabs */
+  $("tabs").innerHTML = sprints.map((s, i) =>
+    `<button class="tab" role="tab" data-i="${i}" data-state="${esc(s.status)}" aria-selected="false">
+       <span class="dot"></span>${esc(s.id)} · ${esc(s.name)}</button>`).join("");
+
+  /* tooltip */
+  const tip = $("tip");
+  const showTip = (e, html) => { tip.innerHTML = html; tip.style.opacity = 1; tip.style.left = e.clientX + "px"; tip.style.top = (e.clientY - 10) + "px"; };
+  const hideTip = () => { tip.style.opacity = 0; };
+
+  function pill(status) {
+    const s = STATUS[status] || { label: status, color: "var(--baseline)" };
+    return `<span class="pill"><span class="swatch" style="background:${s.color}"></span>${esc(s.label)}</span>`;
+  }
+
+  function render(i) {
+    const s = sprints[i];
+    if (!s) return;
+    [...$("tabs").children].forEach((t, j) => t.setAttribute("aria-selected", j === i));
+
+    const feats = s.features || [];
+    const counts = ORDER.map(k => [k, feats.filter(f => f.status === k).length]).filter(([, c]) => c > 0);
+    const total = feats.length || 1;
+    const m = s.metrics || {};
+    const act = s.commitActivity || [];
+    const peak = Math.max(1, ...act.map(d => d.count || 0));
+
+    $("sprint").innerHTML = `
+      <section class="card">
+        <div class="goal">
+          <div>
+            <h3>${esc(s.name)}</h3>
+            <p>${esc(s.goal)}</p>
+          </div>
+          <div class="dates">${esc(s.start)} → ${esc(s.end)}<br>${pill(s.status === "complete" ? "shipped" : s.status === "active" ? "in-progress" : "planned")}</div>
+        </div>
+        <div class="rail" role="img" aria-label="Feature status distribution">
+          ${counts.map(([k, c]) => `<span style="flex:${c};background:${STATUS[k].color}"></span>`).join("")}
+        </div>
+        <div class="legend">
+          ${counts.map(([k, c]) => `<span class="item"><span class="swatch" style="background:${STATUS[k].color}"></span>${STATUS[k].label} <b>${c}</b> <span style="color:var(--ink-3)">${Math.round(c / total * 100)}%</span></span>`).join("")}
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Sprint metrics</h2>
+        <div class="metrics">
+          <div><div class="v">${n(m.commits)}</div><div class="k">Commits</div></div>
+          <div><div class="v">${n(m.prsMerged)}</div><div class="k">PRs merged</div></div>
+          <div><div class="v">${n(m.filesChanged)}</div><div class="k">Files changed</div></div>
+          <div><div class="v"><span class="plus">+${n(m.linesAdded)}</span></div><div class="k">Lines added</div></div>
+          <div><div class="v"><span class="minus">−${n(m.linesRemoved)}</span></div><div class="k">Lines removed</div></div>
+          <div><div class="v">${n(m.testsAdded)}</div><div class="k">Tests added</div></div>
+          <div><div class="v">${m.coverage != null ? m.coverage + "%" : "—"}</div><div class="k">Coverage</div></div>
+          <div><div class="v">${n(feats.reduce((a, f) => a + (f.points || 0), 0))}</div><div class="k">Points</div></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Commits per day</h2>
+        <div class="chart" id="chart">
+          ${act.map(d => `<div class="bar" data-zero="${(d.count||0) === 0 ? 1 : 0}" style="height:${Math.max(2, (d.count||0)/peak*100)}%" data-t="${esc(d.date)} · ${d.count||0} commit${(d.count||0)===1?"":"s"}"></div>`).join("")}
+        </div>
+        <div class="xaxis">${act.map((d, j) => `<span>${act.length > 16 && j % 2 ? "" : day(d.date)}</span>`).join("")}</div>
+        <details>
+          <summary>View as table</summary>
+          <div class="scroll"><table><thead><tr><th>Date</th><th>Commits</th></tr></thead><tbody>
+            ${act.map(d => `<tr><td class="num">${esc(d.date)}</td><td class="num">${d.count || 0}</td></tr>`).join("")}
+          </tbody></table></div>
+        </details>
+      </section>
+
+      <section class="card">
+        <h2>Features &amp; work items (${feats.length})</h2>
+        <div class="scroll"><table>
+          <thead><tr><th>ID</th><th>Item</th><th>Type</th><th>Status</th><th>Owner</th><th>Pts</th><th>Commits</th></tr></thead>
+          <tbody>${feats.map(f => `
+            <tr>
+              <td class="id">${esc(f.id)}</td>
+              <td>${esc(f.title)}${f.notes ? `<span class="files" style="font-family:inherit;color:var(--ink-2)">${esc(f.notes)}</span>` : ""}${(f.files || []).length ? `<span class="files">${esc((f.files || []).join(" · "))}</span>` : ""}</td>
+              <td class="num">${esc(f.type || "—")}</td>
+              <td>${pill(f.status)}</td>
+              <td class="num">${esc(f.owner || "—")}</td>
+              <td class="num">${f.points ?? "—"}</td>
+              <td class="num">${f.commits ?? "—"}</td>
+            </tr>`).join("") || `<tr><td colspan="7" class="empty">No items recorded yet.</td></tr>`}
+          </tbody>
+        </table></div>
+      </section>
+
+      <section class="card">
+        <h2>Decision log (${(s.decisions || []).length})</h2>
+        ${(s.decisions || []).map(d => `
+          <div class="adr">
+            <div class="meta">${esc(d.id)} · ${esc(d.date)} · ${esc(d.status || "accepted")}</div>
+            <h3>${esc(d.title)}</h3>
+            <dl>
+              <dt>Context</dt><dd>${esc(d.context)}</dd>
+              <dt>Decision</dt><dd>${esc(d.decision)}</dd>
+              ${(d.alternatives || []).length ? `<dt>Rejected</dt><dd>${(d.alternatives || []).map(esc).join("<br>")}</dd>` : ""}
+              <dt>Consequences</dt><dd>${esc(d.consequences)}</dd>
+            </dl>
+          </div>`).join("") || `<p class="empty">No decisions recorded yet.</p>`}
+      </section>
+
+      <section class="card">
+        <h2>Blockers &amp; risks</h2>
+        <div class="scroll"><table>
+          <thead><tr><th>Item</th><th>Severity</th><th>Raised</th><th>Owner</th><th>Status</th></tr></thead>
+          <tbody>${(s.blockers || []).map(b => `
+            <tr>
+              <td>${esc(b.title)}${b.note ? `<span class="files" style="font-family:inherit;color:var(--ink-2)">${esc(b.note)}</span>` : ""}</td>
+              <td><span class="pill"><span class="swatch" style="background:${SEVERITY[b.severity] || "var(--baseline)"}"></span>${esc(b.severity)}</span></td>
+              <td class="num">${esc(b.raised)}</td>
+              <td class="num">${esc(b.owner || "—")}</td>
+              <td class="num">${esc(b.status)}</td>
+            </tr>`).join("") || `<tr><td colspan="5" class="empty">Nothing blocked.</td></tr>`}
+          </tbody>
+        </table></div>
+      </section>
+
+      <section class="card">
+        <h2>Timeline</h2>
+        <ul class="tl">${(s.timeline || []).map(t => `
+          <li><time>${esc(t.date)}</time><span><span class="kind">${esc(t.type)}</span>${esc(t.text)}</span></li>`).join("")
+          || `<li class="empty">No events yet.</li>`}
+        </ul>
+      </section>`;
+
+    const chart = $("chart");
+    if (chart) {
+      chart.addEventListener("mousemove", (e) => {
+        const b = e.target.closest(".bar");
+        b ? showTip(e, esc(b.dataset.t)) : hideTip();
+      });
+      chart.addEventListener("mouseleave", hideTip);
+    }
+  }
+
+  $("tabs").addEventListener("click", (e) => {
+    const t = e.target.closest(".tab");
+    if (t) render(+t.dataset.i);
+  });
+
+  $("theme").addEventListener("click", () => {
+    const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+    const cur = document.documentElement.dataset.theme || (dark ? "dark" : "light");
+    document.documentElement.dataset.theme = cur === "dark" ? "light" : "dark";
+  });
+
+  render(0);
+})();
+</script>
+</body>
+</html>
