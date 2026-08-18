@@ -64,6 +64,8 @@ Modern AI coding assistants are powerful, but they mostly see your code as *text
 | 16 | [Spec-Driven Development](chapters/16-spec-driven-development.md) | Specs as the artifact you keep: acceptance criteria, the spec-driven loop, specs as graph knowledge, and when *not* to spec-drive |
 | 17 | [Git Worktrees](chapters/17-git-worktrees.md) | Parallel filesystems for parallel agents: the agent-per-worktree pattern, runtime isolation, integration worktrees, and when *not* to use them |
 | 18 | [Sprint Tracking](chapters/18-sprint-tracking.md) | The engineering record that writes itself: an `AGENTS.md`-declared tracker, decision logs with rejected alternatives, dashboard reading, and when *not* to track |
+| 19 | [Loop Engineering](chapters/19-loop-engineering.md) | Designing the system that prompts the agent: loop anatomy, verifiable stopping conditions, the maker/checker split, the rails, five loop patterns, and when *not* to loop |
+| 20 | [Graph Engineering in the Long-Context Era](chapters/20-graph-engineering-long-context.md) | Kimi K3's 1M-token window and KDA attention, working vs. persistent memory, the eight-layer stack, the borrowed numbers checked, and when *not* to build it |
 | A | [Appendix: Tool Directory](appendix/tool-directory.md) | Reference catalog of 10+ tools with verified links and use cases |
 
 > **New here?** Start with [Chapter 1](chapters/01-executive-summary.md) and follow the *Next* links at the bottom of each chapter.

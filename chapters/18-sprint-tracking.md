@@ -1,4 +1,4 @@
-> [◀ Chapter 17](17-git-worktrees.md) · [🏠 Home](../README.md) · [Appendix: Tool Directory ▶](../appendix/tool-directory.md)
+> [◀ Chapter 17](17-git-worktrees.md) · [🏠 Home](../README.md) · [Chapter 19: Loop Engineering ▶](19-loop-engineering.md)
 
 ---
 
@@ -281,4 +281,4 @@ The second thing worth saying: the temptation, always, is to make the record fla
 
 ---
 
-> [◀ Chapter 17: Git Worktrees](17-git-worktrees.md) · [🏠 Home](../README.md) · [Appendix: Tool Directory ▶](../appendix/tool-directory.md)
+> [◀ Chapter 17: Git Worktrees](17-git-worktrees.md) · [🏠 Home](../README.md) · [Chapter 19: Loop Engineering ▶](19-loop-engineering.md)

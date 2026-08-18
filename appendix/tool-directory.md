@@ -1,6 +1,6 @@
 # Appendix A — Tool Directory
 
-> [◀ Chapter 17](../chapters/17-git-worktrees.md) · [🏠 Home](../README.md)
+> [◀ Chapter 20](../chapters/20-graph-engineering-long-context.md) · [🏠 Home](../README.md)
 
 A reference catalog of the tools that make up the engineering-intelligence ecosystem. Each entry links to the official project.
 
@@ -114,4 +114,4 @@ For AI-powered software engineering specifically (rankings shift depending on wh
 
 ---
 
-> [◀ Chapter 17: Git Worktrees](../chapters/17-git-worktrees.md) · [🏠 Home](../README.md)
+> [◀ Chapter 20: Graph Engineering in the Long-Context Era](../chapters/20-graph-engineering-long-context.md) · [🏠 Home](../README.md)
